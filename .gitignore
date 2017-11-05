@@ -3,6 +3,10 @@
 /target/
 */target/
 
+/out/
+*/out/
+
+
 # Eclipse generated files.
 .settings
 .classpath
