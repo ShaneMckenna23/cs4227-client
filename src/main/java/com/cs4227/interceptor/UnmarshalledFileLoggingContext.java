@@ -1,3 +1,5 @@
+package com.cs4227.interceptor;
+
 import java.awt.*;
 
 public class UnmarshalledFileLoggingContext implements UnmarshalledBaseContext {

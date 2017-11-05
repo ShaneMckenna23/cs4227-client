@@ -1,3 +1,5 @@
+package com.cs4227.interceptor;
+
 import java.util.ArrayList;
 
 public class FileHandlerDispatcher implements BaseDispatcher {
@@ -23,7 +25,7 @@ public class FileHandlerDispatcher implements BaseDispatcher {
         for (int i = 0; i < baseInterceptors.size(); i++) {
             baseInterceptors.get(i).onPreMarshalRequest(context);
         }
-        MarshalledBaseContext marshalledContext = target.execute(context);
+        MarshalledBaseContext marshalledContext = executeTarget(context);
         dispatchFileHandlerInterceptorPostMarshal(marshalledContext);
 
     }
@@ -37,5 +39,10 @@ public class FileHandlerDispatcher implements BaseDispatcher {
     @Override
     public void setTarget(BaseTarget target) {
         this.target = target;
+    }
+
+    @Override
+    public MarshalledBaseContext executeTarget(UnmarshalledBaseContext context) {
+        return target.execute(context);
     }
 }

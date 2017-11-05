@@ -1,3 +1,5 @@
+package com.cs4227.interceptor;
+
 import org.apache.log4j.Logger;
 
 public class FileLoggingInterceptor implements BaseInterceptor {
