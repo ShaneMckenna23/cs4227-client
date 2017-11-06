@@ -4,7 +4,7 @@ import com.cs4227.ui.commands.OpenCommand;
 
 import javax.swing.*;
 
-class ButtonOpen extends JButton {
+public class ButtonOpen extends JButton implements Button{
 
     OpenCommand openCommand = new OpenCommand();
 
@@ -12,7 +12,8 @@ class ButtonOpen extends JButton {
         super(name);
     }
 
-    public void onClick(){
+    @Override
+    public void onClick() {
         openCommand.execute();
     }
 }
