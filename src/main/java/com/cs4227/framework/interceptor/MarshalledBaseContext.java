@@ -1,14 +1,7 @@
-package com.cs4227.interceptor;
-
-import java.awt.*;
-import java.util.GregorianCalendar;
+package com.cs4227.framework.interceptor;
 
 public interface MarshalledBaseContext {
 
-    public String getDirectory();
-    public void setDirectory(String directory);
-    public String getFileName();
-    public void setFileName(String fileName);
     public String getMethod();
     public void setMethod(String method);
     public long getOverallTime();

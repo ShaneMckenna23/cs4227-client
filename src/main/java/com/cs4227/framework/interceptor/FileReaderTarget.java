@@ -1,4 +1,4 @@
-package com.cs4227.interceptor;
+package com.cs4227.framework.interceptor;
 
 import com.cs4227.ui.Start;
 
@@ -7,13 +7,13 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class FileReaderTarget implements BaseTarget {
+public class FileReaderTarget implements BaseFileHandlerTarget {
 
 
     @Override
-    public MarshalledBaseContext execute(UnmarshalledBaseContext context) {
+    public MarshalledFileHandlerContext execute(UnmarshalledFileHandlerContext context) {
 
-        MarshalledFileLoggingContext marshalledContext = createMarshalledContext(context);
+        MarshalledFileHandlerContext marshalledContext = createMarshalledContext(context);
         File selectedFile = new File(context.getDirectory());
         try {
             BufferedImage selectedImage = ImageIO.read(selectedFile);
@@ -32,8 +32,8 @@ public class FileReaderTarget implements BaseTarget {
         return marshalledContext;
     }
 
-    private MarshalledFileLoggingContext createMarshalledContext(UnmarshalledBaseContext context) {
-        MarshalledFileLoggingContext marshalledContext = new MarshalledFileLoggingContext();
+    private MarshalledFileHandlerContext createMarshalledContext(UnmarshalledFileHandlerContext context) {
+        MarshalledFileHandlerContext marshalledContext = new MarshalledFileHandlerContext();
         marshalledContext.setFileName(context.getFileName());
         marshalledContext.setDirectory(context.getDirectory());
         return marshalledContext;

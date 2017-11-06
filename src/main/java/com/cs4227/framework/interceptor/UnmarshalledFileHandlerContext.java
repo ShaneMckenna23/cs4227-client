@@ -1,8 +1,8 @@
-package com.cs4227.interceptor;
+package com.cs4227.framework.interceptor;
 
-import java.awt.*;
+import java.awt.image.BufferedImage;
 
-public class UnmarshalledFileLoggingContext implements UnmarshalledBaseContext {
+public class UnmarshalledFileHandlerContext implements UnmarshalledBaseContext {
 
     private long startTime;
     private String fileName;
@@ -10,14 +10,13 @@ public class UnmarshalledFileLoggingContext implements UnmarshalledBaseContext {
     private String method;
     private boolean outcome;
     private long time;
+    private BufferedImage image;
 
 
-    @Override
     public String getDirectory() {
         return directory;
     }
 
-    @Override
     public String getFileName() {
         return fileName;
     }
@@ -32,12 +31,10 @@ public class UnmarshalledFileLoggingContext implements UnmarshalledBaseContext {
         return time;
     }
 
-    @Override
     public void setDirectory(String directory) {
         this.directory = directory;
     }
 
-    @Override
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
@@ -50,5 +47,13 @@ public class UnmarshalledFileLoggingContext implements UnmarshalledBaseContext {
     @Override
     public void setStartTime(long time) {
         this.time = time;
+    }
+
+    public void setImage(BufferedImage image) {
+        this.image = image;
+    }
+
+    public BufferedImage getImage() {
+        return image;
     }
 }
