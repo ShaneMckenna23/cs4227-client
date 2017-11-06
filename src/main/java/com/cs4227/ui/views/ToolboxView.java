@@ -1,5 +1,9 @@
 package com.cs4227.ui.views;
 
+import com.cs4227.ui.ButtonHandler;
+import com.cs4227.ui.components.ButtonApply;
+import com.cs4227.ui.components.ButtonOpen;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -13,7 +17,9 @@ public class ToolboxView extends JFrame {
     public ToolboxView() throws IOException {
         super("Adjustments");
 
+        ButtonHandler buttonHandler = new ButtonHandler();
         JPanel buttonPanel = new JPanel();
+
 
         GridBagLayout gridbag = new GridBagLayout();
         buttonPanel.setLayout(gridbag);
@@ -36,10 +42,13 @@ public class ToolboxView extends JFrame {
         gbc.gridy = 2;
         buttonPanel.add(dropdownFilterType,gbc);
 
-
-
-
-
+        ButtonApply btnApply = new ButtonApply("Apply");
+        btnApply.addActionListener(buttonHandler);
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.gridx = 0;
+        gbc.gridy = 10;
+        gridbag.setConstraints(btnApply, gbc);
+        buttonPanel.add(btnApply,gbc);
 
         //Add the buttons and the log to the frame
         Container contentPane = getContentPane();
