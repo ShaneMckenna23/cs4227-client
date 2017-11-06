@@ -11,7 +11,7 @@ public class FileWriterTarget implements BaseFileHandlerTarget {
 
     private MarshalledFileHandlerContext createMarshalledContext(UnmarshalledFileHandlerContext context) {
         MarshalledFileHandlerContext marshalledContext = new MarshalledFileHandlerContext();
-        marshalledContext.setFileName(context.getFileName());
+        //marshalledContext.setFileName(context.getFileName());
         marshalledContext.setDirectory(context.getDirectory());
         return marshalledContext;
     }

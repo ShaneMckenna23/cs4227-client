@@ -1,11 +1,24 @@
 package com.cs4227.framework.interceptor;
 
-public interface MarshalledBaseContext {
+public class MarshalledBaseContext extends BaseContext {
 
-    public String getMethod();
-    public void setMethod(String method);
-    public long getOverallTime();
-    public void setOverallTime(long time);
-    public boolean getOutcome();
-    public void setOutcome(boolean outcome);
+    private boolean outcome;
+    private long overallTime;
+
+    public boolean getOutcome() {
+        return outcome;
+    }
+
+    public void setOutcome(boolean outcome) {
+        this.outcome = outcome;
+    }
+
+    public long getOverallTime() {
+        return overallTime;
+    }
+
+    public void setOverallTime(long time) {
+        this.overallTime = time;
+    }
+
 }

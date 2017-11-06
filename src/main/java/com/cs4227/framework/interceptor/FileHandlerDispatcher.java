@@ -2,16 +2,11 @@ package com.cs4227.framework.interceptor;
 
 import java.util.ArrayList;
 
-public class FileHandlerDispatcher implements BaseDispatcher {
+public class FileHandlerDispatcher {
 
     private BaseFileHandlerTarget target;
 
     ArrayList<BaseFileHandlerInterceptor> baseInterceptors;
-
-
-    public FileHandlerDispatcher() {
-        baseInterceptors = new ArrayList<BaseFileHandlerInterceptor>();
-    }
 
     synchronized public void registerInterceptor(BaseFileHandlerInterceptor i) {
         baseInterceptors.add(i);

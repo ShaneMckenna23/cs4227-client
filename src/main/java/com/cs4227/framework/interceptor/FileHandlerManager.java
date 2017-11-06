@@ -8,6 +8,7 @@ public class FileHandlerManager {
     private FileReaderTarget fileReaderTarget;
     private FileWriterTarget fileWriterTarget;
     private FileLoggingInterceptor fileLoggingInterceptor;
+    private boolean loggingEnabled;
 
 
     public FileHandlerManager() {
@@ -15,22 +16,28 @@ public class FileHandlerManager {
     }
 
     protected void enableLogging() {
-        dispatcher.registerInterceptor(fileLoggingInterceptor);
+        if (loggingEnabled == false ) {
+            dispatcher.registerInterceptor(fileLoggingInterceptor);
+        }
+        loggingEnabled = true;
     }
 
     protected void disableLogging() {
-        dispatcher.removeInterceptor(fileLoggingInterceptor);
+        if (loggingEnabled == true) {
+            dispatcher.removeInterceptor(fileLoggingInterceptor);
+        }
+        loggingEnabled = false;
     }
 
     public void openImage(String directory) {
-        UnmarshalledFileHandlerContext context = createUnmarshalledFileContext(directory,
+        UnmarshalledFileHandlerContext context = createUnmarshalledFileHandlerContext(directory,
                 Thread.currentThread().getStackTrace()[1].getMethodName());
         dispatcher.setTarget(fileReaderTarget);
         dispatcher.dispatchFileHandlerInterceptorPreMarshal(context);
     }
 
     public void saveImage(String directory, BufferedImage image) {
-        UnmarshalledFileHandlerContext context = createUnmarshalledFileContext(directory,
+        UnmarshalledFileHandlerContext context = createUnmarshalledFileHandlerContext(directory,
                 Thread.currentThread().getStackTrace()[1].getMethodName());
         context.setImage(image);
         dispatcher.setTarget(fileWriterTarget);
@@ -44,7 +51,7 @@ public class FileHandlerManager {
         fileLoggingInterceptor = new FileLoggingInterceptor();
     }
 
-    private UnmarshalledFileHandlerContext createUnmarshalledFileContext(String directory, String method) {
+    private UnmarshalledFileHandlerContext createUnmarshalledFileHandlerContext(String directory, String method) {
         UnmarshalledFileHandlerContext context = new UnmarshalledFileHandlerContext();
         context.setDirectory(directory);
         context.setMethod(method);

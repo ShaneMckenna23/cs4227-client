@@ -1,9 +1,15 @@
 package com.cs4227.framework.interceptor;
 
-public interface UnmarshalledBaseContext {
+public class UnmarshalledBaseContext extends BaseContext {
 
-    public String getMethod();
-    public void setMethod(String method);
-    public long getStartTime();
-    public void setStartTime(long time);
+    private long startTime;
+
+    public long getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(long time) {
+        this.startTime = time;
+    }
+
 }
