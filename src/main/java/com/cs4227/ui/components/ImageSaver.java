@@ -41,7 +41,6 @@ public class ImageSaver extends JFrame {
                     }catch (Exception e){
 
                     }
-
                     dispose();
                 } else if (command.equals(JFileChooser.CANCEL_SELECTION)) {
                     dispose();

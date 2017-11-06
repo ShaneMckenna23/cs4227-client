@@ -35,6 +35,7 @@ public class ToolboxView extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gridbag.setConstraints(labelFilterType, gbc);
+        buttonPanel.add(labelFilterType,gbc);
 
         String options [] = {"Select Filter", "Monochrome"};
 
