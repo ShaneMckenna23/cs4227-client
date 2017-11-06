@@ -18,6 +18,10 @@ public class FileHandlerManager {
         dispatcher.registerInterceptor(fileLoggingInterceptor);
     }
 
+    protected void disableLogging() {
+        dispatcher.removeInterceptor(fileLoggingInterceptor);
+    }
+
     public void openImage(String directory) {
         UnmarshalledFileHandlerContext context = createUnmarshalledFileContext(directory,
                 Thread.currentThread().getStackTrace()[1].getMethodName());
