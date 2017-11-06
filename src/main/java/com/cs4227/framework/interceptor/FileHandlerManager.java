@@ -29,11 +29,12 @@ public class FileHandlerManager {
         loggingEnabled = false;
     }
 
-    public void openImage(String directory) {
+    public BufferedImage openImage(String directory) {
         UnmarshalledFileHandlerContext context = createUnmarshalledFileHandlerContext(directory,
                 Thread.currentThread().getStackTrace()[1].getMethodName());
         dispatcher.setTarget(fileReaderTarget);
-        dispatcher.dispatchFileHandlerInterceptorPreMarshal(context);
+        MarshalledFileHandlerContext marshalledContext = dispatcher.executeFileHandlerRequest(context);
+        return marshalledContext.getImage();
     }
 
     public void saveImage(String directory, BufferedImage image) {
@@ -41,7 +42,7 @@ public class FileHandlerManager {
                 Thread.currentThread().getStackTrace()[1].getMethodName());
         context.setImage(image);
         dispatcher.setTarget(fileWriterTarget);
-        dispatcher.dispatchFileHandlerInterceptorPreMarshal(context);
+        dispatcher.executeFileHandlerRequest(context);
     }
 
     private void initialize() {

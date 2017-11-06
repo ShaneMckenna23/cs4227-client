@@ -16,16 +16,20 @@ public class FileHandlerDispatcher {
         baseInterceptors.remove(i);
     }
 
-    public void dispatchFileHandlerInterceptorPreMarshal (UnmarshalledFileHandlerContext context) {
+    public MarshalledFileHandlerContext executeFileHandlerRequest(UnmarshalledFileHandlerContext context) {
+        dispatchFileHandlerInterceptorPreMarshal(context);
+        MarshalledFileHandlerContext marshalledContext = executeTarget(context);
+        dispatchFileHandlerInterceptorPostMarshal(marshalledContext);
+        return marshalledContext;
+    }
+
+    private void dispatchFileHandlerInterceptorPreMarshal (UnmarshalledFileHandlerContext context) {
         for (int i = 0; i < baseInterceptors.size(); i++) {
             baseInterceptors.get(i).onPreMarshalRequest(context);
         }
-        MarshalledFileHandlerContext marshalledContext = executeTarget(context);
-        dispatchFileHandlerInterceptorPostMarshal(marshalledContext);
-
     }
 
-    public void dispatchFileHandlerInterceptorPostMarshal (MarshalledFileHandlerContext context) {
+    private void dispatchFileHandlerInterceptorPostMarshal (MarshalledFileHandlerContext context) {
         for (int i = 0; i < baseInterceptors.size(); i++) {
             baseInterceptors.get(i).onPostMarshalRequest(context);
         }
