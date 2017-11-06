@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 public class ImageView extends JFrame {
 
-    public BufferedImage selectedImage;
+    public static BufferedImage selectedImage;
     public int width, height;
 
     public ImageView(BufferedImage image, int w, int h) throws Exception {

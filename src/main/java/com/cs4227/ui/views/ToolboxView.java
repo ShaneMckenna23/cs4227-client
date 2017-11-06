@@ -36,7 +36,9 @@ public class ToolboxView extends JFrame {
         gbc.gridy = 0;
         gridbag.setConstraints(labelFilterType, gbc);
 
-        dropdownFilterType = new JComboBox();
+        String options [] = {"Select Filter", "Monochrome"};
+
+        dropdownFilterType = new JComboBox(options);
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -53,5 +55,9 @@ public class ToolboxView extends JFrame {
         //Add the buttons and the log to the frame
         Container contentPane = getContentPane();
         contentPane.add(buttonPanel, BorderLayout.NORTH);
+    }
+
+    public static String getSelectedFilter() {
+        return (String) dropdownFilterType.getSelectedItem();
     }
 }// end of class
