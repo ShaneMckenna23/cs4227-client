@@ -34,6 +34,11 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests!
+
+      - run:
+                            name: update-packages
+                            command: sudo apt-get update
+
       - run:
                       name: install-some-stuff
                       command: sudo apt-get install libc6:i386 libstdc++6:i386
