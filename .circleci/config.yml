@@ -44,7 +44,7 @@ jobs:
       - run: mvn package
 
       - store_artifacts:
-                path: /target/ejit.exe
+                path: /target
 
 
 
