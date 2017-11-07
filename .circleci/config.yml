@@ -37,7 +37,7 @@ jobs:
 
       - run:
                             name: get-packages
-                            command: sudo apt-get zlib.i686 ncurses-libs.i686 bzip2-libs.i686
+                            command: sudo apt-get lib32z1 lib32ncurses5 lib32bz2-1.0
 
       - run: mvn integration-test
 
