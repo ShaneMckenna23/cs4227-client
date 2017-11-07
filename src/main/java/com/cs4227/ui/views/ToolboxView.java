@@ -2,11 +2,9 @@ package com.cs4227.ui.views;
 
 import com.cs4227.ui.ButtonHandler;
 import com.cs4227.ui.components.ButtonApply;
-import com.cs4227.ui.components.ButtonOpen;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 public class ToolboxView extends JFrame {
