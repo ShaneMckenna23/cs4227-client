@@ -34,11 +34,11 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests!
-      - run: mvn integration-test
-
       - run:
-                name: install-some-stuff
-                command: sudo apt-get install libc6:i386 libstdc++6:i386
+                      name: install-some-stuff
+                      command: sudo apt-get install libc6:i386 libstdc++6:i386
+
+      - run: mvn integration-test
 
       - run: mvn package
 
