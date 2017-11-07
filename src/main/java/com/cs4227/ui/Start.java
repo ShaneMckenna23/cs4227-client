@@ -11,6 +11,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.Paths;
 
 public class Start {
 
@@ -22,8 +25,9 @@ public class Start {
     public static void main(String[] args) throws Exception {
 
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        File file = new File("./images/imageDefault.JPG");
-        BufferedImage selectedImage = ImageIO.read(file);
+
+        InputStream in = Start.class.getResourceAsStream("/imageDefault.jpg");
+        BufferedImage selectedImage = ImageIO.read(in);
 
         imageView = new ImageView(selectedImage, 600, 600);//passing in default image
         imageView.setSize(620, 620);
