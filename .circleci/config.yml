@@ -44,7 +44,7 @@ jobs:
       - run: mvn package
 
       - store_artifacts:
-                path: /ejit.exe
+                path: /home/circleci/repo/cs4227-client/target/ejit.exe
 
 
 
