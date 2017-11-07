@@ -19,7 +19,7 @@ public class OptionsView extends JFrame {
     private JPanel optionsView;
 
     public OptionsView() throws Exception {
-        super("Main");
+        super("Options");
 
         // Create Panel
         optionsView = new JPanel();
