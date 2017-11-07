@@ -1,5 +1,6 @@
 package com.cs4227.ui;
 
+import com.cs4227.framework.interceptor.FileHandlerManager;
 import com.cs4227.ui.views.ImageView;
 import com.cs4227.ui.views.OptionsView;
 import com.cs4227.ui.views.ToolboxView;
@@ -55,6 +56,8 @@ public class Start {
         toolboxView.setSize(220, 500);
         toolboxView.setLocation((1300), (250));
         toolboxView.setVisible(true);
+
+        FileHandlerManager fileHandlerManager = new FileHandlerManager();
     }
 
     public static void refreshImage (BufferedImage image, int w, int h) throws Exception {

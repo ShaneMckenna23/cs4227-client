@@ -1,6 +1,6 @@
 package com.cs4227.ui.commands;
 
-import com.cs4227.filters.Monochrome;
+import com.cs4227.framework.filters.Monochrome;
 import com.cs4227.ui.Start;
 import com.cs4227.ui.views.ImageView;
 import com.cs4227.ui.views.ToolboxView;

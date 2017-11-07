@@ -10,7 +10,6 @@ public class FileHandlerManager {
     private FileLoggingInterceptor fileLoggingInterceptor;
     private boolean loggingEnabled;
 
-
     public FileHandlerManager() {
         initialize();
     }
