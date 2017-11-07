@@ -21,7 +21,7 @@ public class Start {
     public static void main(String[] args) throws Exception {
 
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        File file = new File("./images/imageDefault.JPG");
+        File file = new File("./images/imageDefault.jpg");
         BufferedImage selectedImage = ImageIO.read(file);
 
         imageView = new ImageView(selectedImage, 600, 600);//passing in default image

@@ -12,9 +12,13 @@ public class OptionsView extends JFrame {
 
     public final String OPEN = "Open";
     public final String SAVE = "Save";
+    public final String UNDO = "Undo";
+    public final String REDO = "Redo";
 
     private ButtonOpen btnOpen;
     private ButtonSave btnSave;
+    private ButtonSave btnUndo;
+    private ButtonSave btnRedo;
 
     private JPanel optionsView;
 
@@ -35,6 +39,14 @@ public class OptionsView extends JFrame {
         btnSave.setMnemonic(KeyEvent.VK_S);
         btnSave.addActionListener(buttonHandler);
 
+        btnUndo = new ButtonSave(UNDO);
+        btnUndo.setMnemonic(KeyEvent.VK_U);
+        btnUndo.addActionListener(buttonHandler);
+
+        btnRedo = new ButtonSave(REDO);
+        btnRedo.setMnemonic(KeyEvent.VK_R);
+        btnRedo.addActionListener(buttonHandler);
+
         //Button Panel
         JPanel buttonPanel = new JPanel();
 
@@ -45,6 +57,8 @@ public class OptionsView extends JFrame {
 
         buttonPanel.add(btnOpen);
         buttonPanel.add(btnSave);
+        buttonPanel.add(btnUndo);
+        buttonPanel.add(btnRedo);
 
         gbc.insets.top = 5;
         gbc.insets.bottom = 5;
@@ -58,6 +72,12 @@ public class OptionsView extends JFrame {
         gbc.gridx = 2;
         gbc.gridy = 0;
         gridbag.setConstraints(btnSave, gbc);
+        gbc.gridx = 3;
+        gbc.gridy = 0;
+        gridbag.setConstraints(btnUndo, gbc);
+        gbc.gridx = 4;
+        gbc.gridy = 0;
+        gridbag.setConstraints(btnRedo, gbc);
 
 
         gbc.anchor = GridBagConstraints.EAST;

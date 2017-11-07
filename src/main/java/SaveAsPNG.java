@@ -10,7 +10,7 @@ class SaveAsPNG implements SaveAsStrategy {
 
         for (int i = 0; i < imageList.length; i++) {
             origianlType = imageList[i].getType();
-            imageList[i].setType("PNG");
+            imageList[i].setType("png");
 
             savedFileName.append(imageList[i].getImageName());
             savedFileName.append(".");

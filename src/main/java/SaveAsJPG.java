@@ -10,7 +10,7 @@ class SaveAsJPG implements SaveAsStrategy {
 
         for (int i = 0; i < imageList.length; i++) {
             originalType = imageList[i].getType();
-            imageList[i].setType("JPG");
+            imageList[i].setType("jpg");
 
             savedFileName.append(imageList[i].getImageName());
             savedFileName.append(".");
