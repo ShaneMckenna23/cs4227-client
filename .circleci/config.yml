@@ -36,12 +36,8 @@ jobs:
       # run tests!
 
       - run:
-                            name: update-packages
-                            command: sudo apt-get update
-
-      - run:
-                      name: install-some-stuff
-                      command: sudo apt-get install libc6:i386 libstdc++6:i386
+                            name: get-packages
+                            command: sudo apt-get zlib.i686 ncurses-libs.i686 bzip2-libs.i686
 
       - run: mvn integration-test
 
