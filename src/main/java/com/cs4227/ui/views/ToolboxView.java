@@ -13,13 +13,14 @@ public class ToolboxView extends JFrame {
 
     private static JComboBox dropdownFilterType;
     private static JLabel labelFilterType;
+    private static JTextField txtImageWidth, txtImageHeight;
+    private static JSlider sldBrightness;
 
     public ToolboxView() throws IOException {
         super("Adjustments");
 
         ButtonHandler buttonHandler = new ButtonHandler();
         JPanel buttonPanel = new JPanel();
-
 
         GridBagLayout gridbag = new GridBagLayout();
         buttonPanel.setLayout(gridbag);
@@ -45,9 +46,29 @@ public class ToolboxView extends JFrame {
         gbc.gridy = 2;
         buttonPanel.add(dropdownFilterType,gbc);
 
+        txtImageHeight = new JTextField(5);
+        gridbag.setConstraints(txtImageHeight, gbc);
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        buttonPanel.add(txtImageHeight,gbc);
+
+        txtImageWidth = new JTextField(5);
+        gridbag.setConstraints(txtImageWidth, gbc);
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        buttonPanel.add(txtImageWidth,gbc);
+
+        sldBrightness = new JSlider();
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        buttonPanel.add(sldBrightness,gbc);
+
         ButtonApply btnApply = new ButtonApply("Apply");
         btnApply.addActionListener(buttonHandler);
-        gbc.anchor = GridBagConstraints.WEST;
+        gbc.anchor = GridBagConstraints.CENTER;
         gbc.gridx = 0;
         gbc.gridy = 10;
         gridbag.setConstraints(btnApply, gbc);
