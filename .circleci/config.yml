@@ -34,5 +34,17 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests!
+
+      - run:
+                            name: get-packages
+                            command: sudo apt-get install lib32z1 lib32ncurses5 lib32stdc++6
+
       - run: mvn integration-test
+
+      - run: mvn package
+
+      - store_artifacts:
+                path: ./target/ejit.exe
+
+
 

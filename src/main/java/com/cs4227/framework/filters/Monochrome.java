@@ -1,4 +1,4 @@
-package com.cs4227.filters;
+package com.cs4227.framework.filters;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -7,7 +7,7 @@ import java.io.*;
 
 import javax.imageio.ImageIO;
 
-public class Monochrome {
+public class Monochrome implements Filter {
 
     BufferedImage  image;
     int width;

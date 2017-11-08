@@ -6,6 +6,9 @@
 /out/
 */out/
 
+*.jpg
+*.png
+*.gif
 
 # Eclipse generated files.
 .settings

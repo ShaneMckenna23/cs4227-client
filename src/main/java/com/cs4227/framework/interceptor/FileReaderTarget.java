@@ -19,7 +19,7 @@ public class FileReaderTarget implements BaseFileHandlerTarget {
             BufferedImage selectedImage = ImageIO.read(selectedFile);
             int width = selectedImage.getWidth();
             int height = selectedImage.getHeight();
-            Start.refreshImage(selectedImage, width, height);
+            marshalledContext.setImage(selectedImage);
             marshalledContext.setOutcome(true);
         } catch (IOException e) {
             marshalledContext.setOutcome(false);
