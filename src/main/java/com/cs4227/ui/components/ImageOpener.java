@@ -1,5 +1,6 @@
 package com.cs4227.ui.components;
 
+import com.cs4227.framework.memento.MementoControl;
 import com.cs4227.ui.Start;
 
 import javax.imageio.ImageIO;
@@ -35,10 +36,7 @@ public class ImageOpener extends JFrame {
                     try {
                         BufferedImage selectedImage = ImageIO.read(selectedFile);
 
-                        //Put Image into frame
-                        int width = selectedImage.getWidth();
-                        int height = selectedImage.getHeight();
-                        Start.refreshImage(selectedImage, width, height);
+                        Start.modifyImage(selectedImage);
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (Exception e) {

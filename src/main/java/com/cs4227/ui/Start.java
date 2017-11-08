@@ -1,6 +1,7 @@
 package com.cs4227.ui;
 
 import com.cs4227.framework.interceptor.FileHandlerManager;
+import com.cs4227.framework.memento.MementoControl;
 import com.cs4227.ui.views.ImageView;
 import com.cs4227.ui.views.OptionsView;
 import com.cs4227.ui.views.ToolboxView;
@@ -13,6 +14,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.Buffer;
 import java.nio.file.Paths;
 
 public class Start {
@@ -64,7 +66,19 @@ public class Start {
         FileHandlerManager fileHandlerManager = new FileHandlerManager();
     }
 
+    public static void modifyImage(BufferedImage image) throws Exception {
+
+        MementoControl.originator.set( image );
+        MementoControl.caretaker.addMemento( MementoControl.originator.storeInMemento() );
+
+        MementoControl.setImagePathCount( MementoControl.getImageCount() + 1 );
+        MementoControl.setCurrentPathIndex( MementoControl.getCurrentPathIndex() + 1 );
+
+        refreshImage(image, image.getWidth(), image.getHeight());
+    }
+
     public static void refreshImage (BufferedImage image, int w, int h) throws Exception {
+
         imageView.dispose();
 
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();

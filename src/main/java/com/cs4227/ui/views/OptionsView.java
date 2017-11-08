@@ -6,7 +6,9 @@ import java.awt.event.KeyEvent;
 
 import com.cs4227.ui.ButtonHandler;
 import com.cs4227.ui.components.ButtonOpen;
+import com.cs4227.ui.components.ButtonRedo;
 import com.cs4227.ui.components.ButtonSave;
+import com.cs4227.ui.components.ButtonUndo;
 
 public class OptionsView extends JFrame {
 
@@ -17,8 +19,8 @@ public class OptionsView extends JFrame {
 
     private ButtonOpen btnOpen;
     private ButtonSave btnSave;
-    private ButtonSave btnUndo;
-    private ButtonSave btnRedo;
+    private ButtonUndo btnUndo;
+    private ButtonRedo btnRedo;
 
     private JPanel optionsView;
 
@@ -39,11 +41,11 @@ public class OptionsView extends JFrame {
         btnSave.setMnemonic(KeyEvent.VK_S);
         btnSave.addActionListener(buttonHandler);
 
-        btnUndo = new ButtonSave(UNDO);
+        btnUndo = new ButtonUndo(UNDO);
         btnUndo.setMnemonic(KeyEvent.VK_U);
         btnUndo.addActionListener(buttonHandler);
 
-        btnRedo = new ButtonSave(REDO);
+        btnRedo = new ButtonRedo(REDO);
         btnRedo.setMnemonic(KeyEvent.VK_R);
         btnRedo.addActionListener(buttonHandler);
 

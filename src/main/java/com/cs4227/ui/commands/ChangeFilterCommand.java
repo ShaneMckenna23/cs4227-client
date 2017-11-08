@@ -1,6 +1,7 @@
 package com.cs4227.ui.commands;
 
 import com.cs4227.framework.filters.Monochrome;
+import com.cs4227.framework.memento.MementoControl;
 import com.cs4227.ui.Start;
 import com.cs4227.ui.views.ImageView;
 import com.cs4227.ui.views.ToolboxView;
@@ -23,7 +24,8 @@ public class ChangeFilterCommand implements Command {
                 File convImage = monochrome.convert(outputfile);
 
                 BufferedImage in = ImageIO.read(convImage);
-                Start.refreshImage(in, in.getWidth(),in.getHeight());
+
+                Start.modifyImage(in);
             }catch (Exception e) {
                 e.printStackTrace();
             }

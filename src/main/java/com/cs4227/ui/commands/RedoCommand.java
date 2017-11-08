@@ -1,6 +1,9 @@
 package com.cs4227.ui.commands;
 
-import com.cs4227.ui.Memento.MementoControl;
+import com.cs4227.framework.memento.MementoControl;
+import com.cs4227.ui.Start;
+
+import java.awt.image.BufferedImage;
 
 public class RedoCommand {
 
@@ -13,9 +16,12 @@ public class RedoCommand {
             currentIndex++;
             MementoControl.setCurrentPathIndex(currentIndex);
 
-            String imagePath = MementoControl.originator.restoreFromMemento(MementoControl.caretaker.getMemento(currentIndex));
-
-
+            BufferedImage imagePath = MementoControl.originator.restoreFromMemento(MementoControl.caretaker.getMemento(currentIndex));
+            try {
+                Start.refreshImage(imagePath, imagePath.getWidth(), imagePath.getHeight());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-package com.cs4227.ui.Memento;
+package com.cs4227.framework.memento;
 
 import java.util.ArrayList;
 
