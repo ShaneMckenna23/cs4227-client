@@ -1,6 +1,7 @@
 package com.cs4227.ui.components;
 
 import com.cs4227.framework.memento.MementoControl;
+import com.cs4227.framework.visitor.ImageValueProcessor;
 import com.cs4227.ui.Start;
 
 import javax.imageio.ImageIO;
@@ -36,6 +37,8 @@ public class ImageOpener extends JFrame {
                     try {
                         BufferedImage selectedImage = ImageIO.read(selectedFile);
 
+                        ImageValueProcessor imageValueProcessor = new ImageValueProcessor(selectedImage);
+                        double red = imageValueProcessor.getRed();
                         Start.modifyImage(selectedImage);
                     } catch (IOException e) {
                         e.printStackTrace();
