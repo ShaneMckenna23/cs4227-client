@@ -1,13 +1,14 @@
 package com.cs4227.ui.components;
 
 import com.cs4227.ui.commands.ChangeFilterCommand;
+import com.cs4227.ui.commands.Command;
 import com.cs4227.ui.commands.OpenCommand;
 
 import javax.swing.*;
 
 public class ButtonApply extends JButton implements Button{
 
-    ChangeFilterCommand changeFilterCommand = new ChangeFilterCommand();
+    Command command;
 
     public ButtonApply(String name) {
         super(name);
@@ -15,6 +16,11 @@ public class ButtonApply extends JButton implements Button{
 
     @Override
     public void onClick() {
-        changeFilterCommand.execute();
+        command.execute();
+    }
+
+    @Override
+    public void setCommand(Command command) {
+        this.command = command;
     }
 }

@@ -1,12 +1,13 @@
 package com.cs4227.ui.components;
 
+import com.cs4227.ui.commands.Command;
 import com.cs4227.ui.commands.OpenCommand;
 
 import javax.swing.*;
 
 public class ButtonOpen extends JButton implements Button{
 
-    OpenCommand openCommand = new OpenCommand();
+    Command command;
 
     public ButtonOpen(String name) {
         super(name);
@@ -14,6 +15,11 @@ public class ButtonOpen extends JButton implements Button{
 
     @Override
     public void onClick() {
-        openCommand.execute();
+        command.execute();
+    }
+
+    @Override
+    public void setCommand(Command command) {
+        this.command = command;
     }
 }

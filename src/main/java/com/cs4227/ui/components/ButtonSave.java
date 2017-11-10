@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class ButtonSave extends JButton implements Button{
 
-    Command saveCommand;
+    Command command;
 
     public ButtonSave(String name) {
         super(name);
@@ -14,6 +14,11 @@ public class ButtonSave extends JButton implements Button{
 
     @Override
     public void onClick() {
-        saveCommand.execute();
+        command.execute();
+    }
+
+    @Override
+    public void setCommand(Command command) {
+        this.command = command;
     }
 }
