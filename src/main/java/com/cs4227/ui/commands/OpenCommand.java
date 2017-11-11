@@ -1,6 +1,7 @@
 package com.cs4227.ui.commands;
 
-import com.cs4227.ui.components.ImageOpener;
+import com.cs4227.ui.models.ImageOpenerModel;
+import com.cs4227.ui.views.ImageOpener;
 
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
@@ -8,17 +9,15 @@ import java.awt.event.WindowEvent;
 
 public class OpenCommand implements Command {
 
+    private ImageOpenerModel imageOpenerModel;
+
+    public OpenCommand(ImageOpenerModel imageOpenerModel){
+        this.imageOpenerModel = imageOpenerModel;
+    }
+
     @Override
     public void execute() {
-        JFrame frame = new ImageOpener();
-        frame.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                System.exit(0);
-            }
-        });
-
-        frame.pack();
-        frame.setVisible(true);
+        imageOpenerModel.openImageOpener();
     }
 
     @Override

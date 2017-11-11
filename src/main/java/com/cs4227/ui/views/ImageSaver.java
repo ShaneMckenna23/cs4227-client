@@ -1,8 +1,6 @@
-package com.cs4227.ui.components;
+package com.cs4227.ui.views;
 
-import com.cs4227.framework.memento.MementoControl;
-import com.cs4227.framework.visitor.ImageValueProcessor;
-import com.cs4227.ui.Start;
+import com.cs4227.ui.views.ImageView;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -13,15 +11,15 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class ImageOpener extends JFrame {
+public class ImageSaver extends JFrame {
 
-    public ImageOpener(){
+    public ImageSaver() {
         super("Choose an Image");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        JFileChooser fileChooser = new JFileChooser("C://Users");
+        JFileChooser fileChooser = new JFileChooser(".");
         fileChooser.setControlButtonsAreShown(true);
-        fileChooser.setDialogType(fileChooser.OPEN_DIALOG);
+        fileChooser.setDialogType(fileChooser.SAVE_DIALOG);
 
         add(fileChooser, BorderLayout.CENTER);
 
@@ -33,17 +31,15 @@ public class ImageOpener extends JFrame {
                 String command = actionEvent.getActionCommand();
 
                 if (command.equals(JFileChooser.APPROVE_SELECTION)) {
-                    File selectedFile = theFileChooser.getSelectedFile();
-                    try {
-                        BufferedImage selectedImage = ImageIO.read(selectedFile);
+                    File fileDestination = theFileChooser.getSelectedFile();
+                    String path = fileDestination.getParent()+"\\"+fileDestination.getName();
+                    File file = new File(path);
 
-                        ImageValueProcessor imageValueProcessor = new ImageValueProcessor(selectedImage);
-                        double red = imageValueProcessor.getRed();
-                        Start.modifyImage(selectedImage);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    BufferedImage image = ImageView.selectedImage;
+                    try{
+                        ImageIO.write(image, "jpg", file);
+                    }catch (Exception e){
+
                     }
                     dispose();
                 } else if (command.equals(JFileChooser.CANCEL_SELECTION)) {
@@ -52,7 +48,7 @@ public class ImageOpener extends JFrame {
             }
         };
         fileChooser.addActionListener(actionListener);
-
-       setVisible(true);
+        // pack();
+        setVisible(true);
     }
 }

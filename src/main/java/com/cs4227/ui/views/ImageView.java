@@ -7,14 +7,16 @@ import java.awt.image.BufferedImage;
 public class ImageView extends JFrame {
 
     public static BufferedImage selectedImage;
-    public int width, height;
 
-    public ImageView(BufferedImage image, int w, int h) throws Exception {
+    public ImageView(BufferedImage image) {
         super("Image Viewer");
 
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+
+        this.setSize(620, 620);
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+
         selectedImage = image;
-        width = w;
-        height = h;
 
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -31,7 +33,18 @@ public class ImageView extends JFrame {
 
         JLabel actualImage = new JLabel(new ImageIcon(selectedImage));
 
+        //Add the image to the frame
+        Container contentPane = getContentPane();
+        contentPane.add(actualImage, BorderLayout.CENTER);
+    }
 
+    public BufferedImage getImage(){
+        return selectedImage;
+    }
+    public void setImage(BufferedImage image){
+        selectedImage = image;
+
+        JLabel actualImage = new JLabel(new ImageIcon(selectedImage));
         //Add the image to the frame
         Container contentPane = getContentPane();
         contentPane.add(actualImage, BorderLayout.CENTER);

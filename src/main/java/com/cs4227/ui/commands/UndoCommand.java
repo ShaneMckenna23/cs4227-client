@@ -5,7 +5,7 @@ import com.cs4227.ui.Start;
 
 import java.awt.image.BufferedImage;
 
-public class UndoCommand {
+public class UndoCommand implements Command {
 
     public void execute() {
         System.out.print("Undo");

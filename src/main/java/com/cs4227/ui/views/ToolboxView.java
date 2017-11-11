@@ -1,24 +1,32 @@
 package com.cs4227.ui.views;
 
-import com.cs4227.ui.ButtonHandler;
-import com.cs4227.ui.components.ButtonApply;
+import com.cs4227.ui.commands.Command;
+import com.cs4227.ui.components.Button;
+import com.cs4227.ui.components.Component;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
-public class ToolboxView extends JFrame {
+public class ToolboxView extends JFrame implements View {
 
-    private static JComboBox dropdownFilterType;
-    private static JLabel labelFilterType;
-    private static JTextField txtImageWidth, txtImageHeight;
-    private static JSlider sldBrightness;
+    private ArrayList<Component> components;
+
+    private JComboBox dropdownFilterType;
+    private JLabel labelFilterType;
+    private JTextField txtImageWidth, txtImageHeight;
+    private JSlider sldBrightness;
 
     public ToolboxView() throws IOException {
         super("Adjustments");
 
-        ButtonHandler buttonHandler = new ButtonHandler();
+        this.setSize(220, 500);
+        this.setLocation((1300), (250));
+
         JPanel buttonPanel = new JPanel();
+        components = new ArrayList<Component>();
 
         GridBagLayout gridbag = new GridBagLayout();
         buttonPanel.setLayout(gridbag);
@@ -64,20 +72,36 @@ public class ToolboxView extends JFrame {
         gbc.gridy = 5;
         buttonPanel.add(sldBrightness,gbc);
 
-        ButtonApply btnApply = new ButtonApply("Apply");
-        btnApply.addActionListener(buttonHandler);
+        Button btnApply = new Button("Apply");
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.gridx = 0;
         gbc.gridy = 10;
         gridbag.setConstraints(btnApply, gbc);
         buttonPanel.add(btnApply,gbc);
+        components.add(btnApply);
 
         //Add the buttons and the log to the frame
         Container contentPane = getContentPane();
         contentPane.add(buttonPanel, BorderLayout.NORTH);
     }
 
-    public static String getSelectedFilter() {
+    @Override
+    public void addComponentListeners(ActionListener componentListener) {
+        for(Component c: components){
+            c.addActionListener(componentListener);
+        }
+    }
+
+    @Override
+    public void addCommandToComponent(String name, Command command) {
+        for(Component c: components){
+            if(c.getName().equals(name)){
+                c.setCommand(command);
+            }
+        }
+    }
+
+    public String getSelectedFilter() {
         return (String) dropdownFilterType.getSelectedItem();
     }
-}// end of class
+}

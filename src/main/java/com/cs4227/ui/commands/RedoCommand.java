@@ -5,7 +5,7 @@ import com.cs4227.ui.Start;
 
 import java.awt.image.BufferedImage;
 
-public class RedoCommand {
+public class RedoCommand implements Command {
 
     public void execute() {
         System.out.print("Redo");

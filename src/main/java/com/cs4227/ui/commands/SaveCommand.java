@@ -1,6 +1,6 @@
 package com.cs4227.ui.commands;
 
-import com.cs4227.ui.components.ImageSaver;
+import com.cs4227.ui.views.ImageSaver;
 
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
