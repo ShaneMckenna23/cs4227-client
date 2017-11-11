@@ -86,7 +86,7 @@ public class ToolboxView extends JFrame implements View {
     }
 
     @Override
-    public void addComponentListeners(ActionListener componentListener) {
+    public void addComponentListener(ActionListener componentListener) {
         for(Component c: components){
             c.addActionListener(componentListener);
         }

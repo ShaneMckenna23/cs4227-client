@@ -18,7 +18,6 @@ public class Button extends JButton implements Component{
         command.execute();
     }
 
-    @Override
     public void setCommand(Command command) {
         this.command = command;
     }

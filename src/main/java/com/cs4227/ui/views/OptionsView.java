@@ -78,7 +78,7 @@ public class OptionsView extends JFrame implements View{
     }
 
     @Override
-    public void addComponentListeners(ActionListener componentListener) {
+    public void addComponentListener(ActionListener componentListener) {
         for(com.cs4227.ui.components.Component c: components){
             c.addActionListener(componentListener);
         }

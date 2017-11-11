@@ -5,6 +5,9 @@ import java.awt.image.BufferedImage;
 public class ImageModel {
     private BufferedImage image;
 
+    public ImageModel(BufferedImage image){
+        this.image = image;
+    }
     public BufferedImage getImage(){
         return image;
     }
