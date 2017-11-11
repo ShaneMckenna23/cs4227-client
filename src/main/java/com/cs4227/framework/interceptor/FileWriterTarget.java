@@ -13,7 +13,7 @@ public class FileWriterTarget implements BaseFileHandlerTarget {
 
     @Override
     public MarshalledFileHandlerContext execute(UnmarshalledFileHandlerContext context) {
-        BufferedImage selectedFile = ImageView.selectedImage;
+        //BufferedImage selectedFile = ImageView.selectedImage;
 
         return createMarshalledContext(context);
     }

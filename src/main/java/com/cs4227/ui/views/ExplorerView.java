@@ -32,4 +32,8 @@ public class ExplorerView extends JFrame {
     public void addCancelCommand(Command command) {
         fileChooser.setCancelCommand(command);
     }
+
+    public FileChooser getFileChooser() {
+        return fileChooser;
+    }
 }

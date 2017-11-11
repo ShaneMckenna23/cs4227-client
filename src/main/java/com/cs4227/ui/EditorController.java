@@ -50,7 +50,7 @@ public class EditorController {
     }
 
     private void initializeExplorerOpen() {
-        this.explorerOpen.addApproveCommand(new OpenImageCommand());
+        this.explorerOpen.addApproveCommand(new OpenImageCommand(imageModel, imageView, explorerOpen, explorerOpenModel));
         this.explorerOpen.addCancelCommand(new CloseExplorerCommand(explorerOpenModel, explorerOpen));
     }
 

@@ -6,9 +6,11 @@ import java.awt.image.BufferedImage;
 
 public class ImageView extends JFrame {
 
-    public static BufferedImage selectedImage;
+    private BufferedImage selectedImage;
+    private JLabel imageLabel;
+    private ImageIcon image;
 
-    public ImageView(BufferedImage image) {
+    public ImageView(BufferedImage selectedImage) {
         super("Image Viewer");
 
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -16,7 +18,7 @@ public class ImageView extends JFrame {
         this.setSize(620, 620);
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
-        selectedImage = image;
+        this.selectedImage = selectedImage;
 
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -30,12 +32,12 @@ public class ImageView extends JFrame {
         gbc.insets.right = 2;
         gbc.insets.top = 40;
 
-
-        JLabel actualImage = new JLabel(new ImageIcon(selectedImage));
+        this.image = new ImageIcon(selectedImage);
+        this.imageLabel = new JLabel(this.image);
 
         //Add the image to the frame
         Container contentPane = getContentPane();
-        contentPane.add(actualImage, BorderLayout.CENTER);
+        contentPane.add(imageLabel, BorderLayout.CENTER);
     }
 
     public BufferedImage getImage(){
@@ -43,10 +45,6 @@ public class ImageView extends JFrame {
     }
     public void setImage(BufferedImage image){
         selectedImage = image;
-
-        JLabel actualImage = new JLabel(new ImageIcon(selectedImage));
-        //Add the image to the frame
-        Container contentPane = getContentPane();
-        contentPane.add(actualImage, BorderLayout.CENTER);
+        imageLabel.setIcon(new ImageIcon(selectedImage));
     }
 }

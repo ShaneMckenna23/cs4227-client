@@ -23,7 +23,7 @@ public class OptionsView extends JFrame implements View{
 
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(600, 80);
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2 - 100);
+        this.setLocation(650, 150);
 
         //Button Panel
         JPanel buttonPanel = new JPanel();
