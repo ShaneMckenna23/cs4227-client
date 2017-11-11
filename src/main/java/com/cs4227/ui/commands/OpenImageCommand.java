@@ -1,12 +1,9 @@
 package com.cs4227.ui.commands;
 
-import com.cs4227.ui.components.FileChooser;
 import com.cs4227.ui.models.ExplorerModel;
 import com.cs4227.ui.models.ImageModel;
 import com.cs4227.ui.views.ExplorerView;
 import com.cs4227.ui.views.ImageView;
-
-import java.io.File;
 
 public class OpenImageCommand implements Command {
 

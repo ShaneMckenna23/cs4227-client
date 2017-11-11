@@ -29,4 +29,16 @@ public class ImageModel {
             e.printStackTrace();
         }
     }
+
+    public void saveImage(String filename,String path) {
+        try{
+            File outputfile = new File(path);
+            String fileExtension = filename.split("\\.")[1]+"";
+            System.out.print(fileExtension);
+            ImageIO.write(image, fileExtension, outputfile);
+        }catch (Exception e){
+            System.out.print("Error!");
+            e.printStackTrace();
+        }
+    }
 }

@@ -55,7 +55,7 @@ public class EditorController {
     }
 
     private void initializeExplorerClose() {
-        this.explorerSave.addApproveCommand(new SaveImageCommand());
+        this.explorerSave.addApproveCommand(new SaveImageCommand(explorerSave, imageModel));
         this.explorerSave.addCancelCommand(new CloseExplorerCommand(explorerOpenModel, explorerSave));
     }
 
