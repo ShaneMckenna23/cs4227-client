@@ -6,6 +6,7 @@ import com.cs4227.framework.interceptor.state.TargetSuccessState;
 import org.apache.log4j.Logger;
 
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -22,6 +23,19 @@ public class FileWriterTarget implements BaseFileHandlerTarget {
     public FileWriterTarget() {
         outcomeContext = new StateContext();
     }
+
+   /* public String saveStrategy(String path, String imageName, String extension, BufferedImage image) {
+        String directory = path + "/" + imageName + extension;
+
+        System.out.println("\n" + directory);
+
+        dispatcherManager = new FileHandlerDispatcherManager(new FileWriterTarget());
+        PreFileHandlerContext context = createPreFileHandlerContext(directory,
+                Thread.currentThread().getStackTrace()[1].getMethodName());
+        context.setImage(image);
+        PostFileHandlerContext postRequestContext = dispatcherManager.executeFileHandlerRequest(context);
+        return directory;
+    }*/
 
     @Override
     public PostFileHandlerContext execute(PreFileHandlerContext context) {

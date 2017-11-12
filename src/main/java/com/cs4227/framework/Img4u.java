@@ -3,12 +3,14 @@ package com.cs4227.framework;
 import com.cs4227.framework.filters.Filter;
 import com.cs4227.framework.filters.FilterFactory;
 import com.cs4227.framework.interceptor.FileHandlerManager;
+import com.cs4227.framework.interceptor.FileWriterTarget;
 
 import java.awt.image.BufferedImage;
 
 public class Img4u {
 
     private FileHandlerManager fileHandlerManager;
+    private FileWriterTarget fileWriterTarget;
     private FilterFactory filterFactory;
 
     public Img4u(){
@@ -22,6 +24,10 @@ public class Img4u {
 
     public String saveImage(String directory, BufferedImage image) {
         return fileHandlerManager.saveImage(directory,image);
+    }
+
+    public String saveStrategy(String path, String imageName, String extension, BufferedImage image) {
+        return fileHandlerManager.saveStrategy(path, imageName, extension, image);
     }
 
     public BufferedImage adjustImageBrightness(BufferedImage image, int brightnessValue) {
