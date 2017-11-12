@@ -2,7 +2,7 @@ package com.cs4227.framework.interceptor;
 
 public interface BaseFileHandlerInterceptor {
 
-    public void onPreMarshalRequest (UnmarshalledFileHandlerContext context);
+    public void executePreRequest(PreFileHandlerContext context);
 
-    public void onPostMarshalRequest (MarshalledFileHandlerContext context);
+    public void executePostRequest(PostFileHandlerContext context);
 }

@@ -8,6 +8,10 @@ public class FileHandlerDispatcher {
 
     ArrayList<BaseFileHandlerInterceptor> baseInterceptors;
 
+    public FileHandlerDispatcher() {
+        baseInterceptors = new ArrayList<>();
+    }
+
     synchronized public void registerInterceptor(BaseFileHandlerInterceptor i) {
         baseInterceptors.add(i);
     }
@@ -16,22 +20,22 @@ public class FileHandlerDispatcher {
         baseInterceptors.remove(i);
     }
 
-    public MarshalledFileHandlerContext executeFileHandlerRequest(UnmarshalledFileHandlerContext context) {
+    public PostFileHandlerContext executeFileHandlerRequest(PreFileHandlerContext context) {
         dispatchFileHandlerInterceptorPreMarshal(context);
-        MarshalledFileHandlerContext marshalledContext = executeTarget(context);
-        dispatchFileHandlerInterceptorPostMarshal(marshalledContext);
-        return marshalledContext;
+        PostFileHandlerContext postRequestContext = executeTarget(context);
+        dispatchFileHandlerInterceptorPostMarshal(postRequestContext);
+        return postRequestContext;
     }
 
-    private void dispatchFileHandlerInterceptorPreMarshal (UnmarshalledFileHandlerContext context) {
+    private void dispatchFileHandlerInterceptorPreMarshal (PreFileHandlerContext context) {
         for (int i = 0; i < baseInterceptors.size(); i++) {
-            baseInterceptors.get(i).onPreMarshalRequest(context);
+            baseInterceptors.get(i).executePreRequest(context);
         }
     }
 
-    private void dispatchFileHandlerInterceptorPostMarshal (MarshalledFileHandlerContext context) {
+    private void dispatchFileHandlerInterceptorPostMarshal (PostFileHandlerContext context) {
         for (int i = 0; i < baseInterceptors.size(); i++) {
-            baseInterceptors.get(i).onPostMarshalRequest(context);
+            baseInterceptors.get(i).executePostRequest(context);
         }
     }
 
@@ -39,7 +43,7 @@ public class FileHandlerDispatcher {
         this.target = target;
     }
 
-    public MarshalledFileHandlerContext executeTarget(UnmarshalledFileHandlerContext context) {
+    public PostFileHandlerContext executeTarget(PreFileHandlerContext context) {
         return target.execute(context);
     }
 }

@@ -7,7 +7,7 @@ public class FileLoggingInterceptor implements BaseFileHandlerInterceptor {
     private Logger logger = Logger.getLogger(FileLoggingInterceptor.class);
 
     @Override
-    public void onPreMarshalRequest(UnmarshalledFileHandlerContext context) {
+    public void executePreRequest(PreFileHandlerContext context) {
         StringBuilder logInfo = new StringBuilder();
         logInfo.append("Executing method " + context.getMethod() + " to obtain image from directory: "
                 + context.getDirectory());
@@ -15,11 +15,10 @@ public class FileLoggingInterceptor implements BaseFileHandlerInterceptor {
     }
 
     @Override
-    public void onPostMarshalRequest(MarshalledFileHandlerContext context) {
+    public void executePostRequest(PostFileHandlerContext context) {
         StringBuilder logInfo = new StringBuilder();
-        logInfo.append("Method " + context.getMethod() + " execution was ");
-        String outcome = (context.getOutcome() == false) ? "unsuccessful." : "successful.";
-        logInfo.append(outcome);
+        logInfo.append("Method " + context.getMethod() + " execution outcome: ");
+        logInfo.append(context.getOutcomeContext().getState().stateMessage());
         logInfo.append(" Time spent: " + context.getOverallTime() / 1000000000.0);
         logger.info(logInfo);
     }
