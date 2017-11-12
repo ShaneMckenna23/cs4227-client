@@ -18,6 +18,7 @@ public class OptionsView extends JFrame implements ComponentView{
     private Button btnSave;
     private Button btnUndo;
     private Button btnRedo;
+    private Button btnSaveSt;
 
     public OptionsView() {
         super("Main");
@@ -72,6 +73,14 @@ public class OptionsView extends JFrame implements ComponentView{
         gridbag.setConstraints(btnRedo, gbc);
         buttonPanel.add(btnRedo);
         components.add(btnRedo);
+
+        btnSaveSt = new Button("SAVEST");
+        btnSaveSt.setMnemonic(KeyEvent.VK_T);
+        gbc.gridx = 5;
+        gbc.gridy = 0;
+        gridbag.setConstraints(btnSaveSt, gbc);
+        buttonPanel.add(btnSaveSt);
+        components.add(btnSaveSt);
 
         //Add the buttons and the log to the frame
         Container contentPane = getContentPane();

@@ -3,6 +3,7 @@ package com.cs4227.ui;
 import com.cs4227.ui.commands.*;
 import com.cs4227.ui.components.Component;
 import com.cs4227.ui.models.ExplorerSaveModel;
+import com.cs4227.ui.models.ExplorerSaveStrategyModel;
 import com.cs4227.ui.models.ImageModel;
 import com.cs4227.ui.models.ExplorerOpenModel;
 import com.cs4227.ui.views.*;
@@ -20,10 +21,12 @@ public class EditorController {
     private TransformView transformView;
     private ExplorerView explorerOpen;
     private ExplorerView explorerSave;
+    private ExplorerView explorerSaveStrategy;
 
     private ImageModel imageModel;
     private ExplorerOpenModel explorerOpenModel;
     private ExplorerSaveModel explorerSaveModel;
+    private ExplorerSaveStrategyModel explorerSaveStrategyModel;
 
     public EditorController(ImageView imageView, OptionsView optionsView, AdjustmentsView adjustmentsView, TransformView transformView) {
 
@@ -35,11 +38,13 @@ public class EditorController {
 
         this.explorerOpen = new ExplorerView("OPEN");
         this.explorerSave = new ExplorerView("SAVE");
+        this.explorerSaveStrategy = new ExplorerView("SAVEST");
 
         //Models
         imageModel = new ImageModel(this.imageView.getImage());
         explorerOpenModel = new ExplorerOpenModel();
         explorerSaveModel = new ExplorerSaveModel();
+
 
         //Wire Views -> Commands -> Models
         ComponentListener componentListener = new ComponentListener();
@@ -60,6 +65,7 @@ public class EditorController {
 
         this.optionsView.addCommandToComponent("OPEN", new OpenExplorerCommand(explorerOpenModel, explorerOpen));
         this.optionsView.addCommandToComponent("SAVE", new OpenExplorerCommand(explorerSaveModel, explorerSave));
+        this.optionsView.addCommandToComponent("SAVEST", new OpenExplorerCommand(explorerSaveStrategyModel, explorerSaveStrategy));
         this.optionsView.addCommandToComponent("UNDO", new UndoCommand(imageView));
         this.optionsView.addCommandToComponent("REDO", new RedoCommand(imageView));
     }

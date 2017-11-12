@@ -23,6 +23,7 @@ public class SaveStrategyCommand implements Command {
         String path = explorerView.getFileChooser().getSelectedFile().getParent();
         String name = explorerView.getFileChooser().getSelectedFile().getName();
         String ext = explorerView.getFileChooser().getFileFilter().getDescription();
+
         imageModel.saveStrategy(path, name, ext);
         explorerModel.close();
         explorerView.setVisible(explorerModel.getIsExplorerOpen());

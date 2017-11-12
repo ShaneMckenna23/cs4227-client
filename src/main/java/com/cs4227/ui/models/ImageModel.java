@@ -27,6 +27,10 @@ public class ImageModel {
         img4u.saveImage(path, image);
     }
 
+    public void saveStrategy(String path, String name, String ext) {
+        img4u.saveStrategy(path, name, ext, image);
+    }
+
     public void adjustImageBrightness(int brightnessValue) {
         this.image = img4u.adjustImageBrightness(image, brightnessValue);
     }
