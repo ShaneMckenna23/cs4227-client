@@ -44,6 +44,7 @@ public class ImageModel {
     public String getAlertMessage() {
         return alertMessage;
     }
+
     public void ApplyRotate(String rotateDir, String RotaateDeg) {
         this.image = img4u.applyRotate(image, rotateDir, RotaateDeg);
     }
