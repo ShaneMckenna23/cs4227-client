@@ -6,7 +6,9 @@ import com.cs4227.ui.components.FileChooser;
 import java.awt.image.BufferedImage;
 
 public class ImageModel {
+
     private BufferedImage image;
+    private String alertMessage;
     private Img4u img4u;
 
     public ImageModel(BufferedImage image){
@@ -24,7 +26,7 @@ public class ImageModel {
     }
 
     public void saveImage(String path) {
-        img4u.saveImage(path, image);
+        this.alertMessage = img4u.saveImage(path, image);
     }
 
     public void adjustImageBrightness(int brightnessValue) {
@@ -33,5 +35,9 @@ public class ImageModel {
 
     public void ApplyFilter(String filterType) {
         this.image = img4u.applyFilter(image, filterType);
+    }
+
+    public String getAlertMessage() {
+        return alertMessage;
     }
 }

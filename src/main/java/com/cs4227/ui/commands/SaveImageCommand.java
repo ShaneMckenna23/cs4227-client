@@ -1,10 +1,11 @@
 package com.cs4227.ui.commands;
 
-import com.cs4227.ui.components.FileChooser;
 import com.cs4227.ui.models.ExplorerModel;
 import com.cs4227.ui.models.ImageModel;
 import com.cs4227.ui.views.ExplorerView;
-import com.cs4227.ui.views.ImageView;
+
+import javax.swing.*;
+
 
 public class SaveImageCommand implements Command {
 
@@ -24,6 +25,7 @@ public class SaveImageCommand implements Command {
         imageModel.saveImage(path);
         explorerModel.close();
         explorerView.setVisible(explorerModel.getIsExplorerOpen());
+        JOptionPane.showMessageDialog (null, imageModel.getAlertMessage(), "Alert", JOptionPane.INFORMATION_MESSAGE);
     }
 
     @Override
