@@ -34,4 +34,14 @@ public class ImageModel {
     public void ApplyFilter(String filterType) {
         this.image = img4u.applyFilter(image, filterType);
     }
+
+
+    public void ApplyRotate(String rotateDir, String RotaateDeg) {
+        this.image = img4u.applyRotate(image, rotateDir, RotaateDeg);
+    }
+
+
+    public void ApplySizeChange(int w, int h) {
+        this.image = img4u.applySizeChange(image, w, h);
+    }
 }
