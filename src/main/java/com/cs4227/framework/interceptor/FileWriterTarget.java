@@ -1,27 +1,46 @@
 package com.cs4227.framework.interceptor;
 
-import com.cs4227.ui.Start;
-import com.cs4227.ui.views.ImageView;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import com.cs4227.framework.interceptor.state.StateContext;
+import com.cs4227.framework.interceptor.state.TargetFailureState;
+import com.cs4227.framework.interceptor.state.TargetSuccessState;
+import org.apache.log4j.Logger;
 
 public class FileWriterTarget implements BaseFileHandlerTarget {
 
+    private static final String UNKNOWN_ERROR = "An unknown error occurred when attempting"
+            + "to overwrite the file from directory: ";
+    private static final String IO_ERROR = "An I/O-related error occurred when attempting"
+            + "to overwrite the file from directory:  ";
 
-    @Override
-    public MarshalledFileHandlerContext execute(UnmarshalledFileHandlerContext context) {
-        //BufferedImage selectedFile = ImageView.selectedImage;
+    private StateContext outcomeContext;
+    private Logger logger = Logger.getLogger(FileWriterTarget.class);
 
-        return createMarshalledContext(context);
+    public FileWriterTarget() {
+        outcomeContext = new StateContext();
     }
 
-    private MarshalledFileHandlerContext createMarshalledContext(UnmarshalledFileHandlerContext context) {
-        MarshalledFileHandlerContext marshalledContext = new MarshalledFileHandlerContext();
-        //marshalledContext.setFileName(context.getFileName());
-        marshalledContext.setDirectory(context.getDirectory());
-        return marshalledContext;
+    @Override
+    public PostFileHandlerContext execute(PreFileHandlerContext context) {
+        //todo
+        setFailureState();
+        PostFileHandlerContext postRequestContext = createPostRequestContext(context);
+        postRequestContext.setOutcomeContext(outcomeContext);
+        return postRequestContext;
+    }
+
+    private PostFileHandlerContext createPostRequestContext(PreFileHandlerContext context) {
+        PostFileHandlerContext postRequestContext = new PostFileHandlerContext();
+        postRequestContext.setMethod(context.getMethod());
+        return postRequestContext;
+    }
+
+    private void setFailureState() {
+        TargetFailureState state = new TargetFailureState();
+        state.toggle(outcomeContext);
+    }
+
+    private void setSuccessState() {
+        TargetSuccessState state = new TargetSuccessState();
+        state.toggle(outcomeContext);
     }
 }

@@ -1,6 +1,6 @@
 package com.cs4227.framework.interceptor;
 
-public class UnmarshalledBaseContext extends BaseContext {
+public class PreBaseContext extends BaseContext {
 
     private long startTime;
 
