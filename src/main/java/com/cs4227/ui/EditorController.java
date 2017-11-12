@@ -13,6 +13,7 @@ import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class EditorController {
 
     private ImageView imageView;

@@ -22,8 +22,8 @@ public class Img4u {
         return fileHandlerManager.openImage(directory);
     }
 
-    public void saveImage(String directory, BufferedImage image) {
-        fileHandlerManager.saveImage(directory,image);
+    public String saveImage(String directory, BufferedImage image) {
+        return fileHandlerManager.saveImage(directory,image);
     }
 
     public void saveStrategy(String directory, String imageName, String extension, BufferedImage image) {
