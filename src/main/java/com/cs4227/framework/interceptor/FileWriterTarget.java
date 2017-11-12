@@ -24,18 +24,18 @@ public class FileWriterTarget implements BaseFileHandlerTarget {
         outcomeContext = new StateContext();
     }
 
-    public String saveStrategy(String path, String imageName, String extension, BufferedImage image) {
+   /* public String saveStrategy(String path, String imageName, String extension, BufferedImage image) {
         String directory = path + "/" + imageName + extension;
 
         System.out.println("\n" + directory);
 
-       /* dispatcherManager = new FileHandlerDispatcherManager(new FileWriterTarget());
+        dispatcherManager = new FileHandlerDispatcherManager(new FileWriterTarget());
         PreFileHandlerContext context = createPreFileHandlerContext(directory,
                 Thread.currentThread().getStackTrace()[1].getMethodName());
         context.setImage(image);
-        PostFileHandlerContext postRequestContext = dispatcherManager.executeFileHandlerRequest(context);*/
+        PostFileHandlerContext postRequestContext = dispatcherManager.executeFileHandlerRequest(context);
         return directory;
-    }
+    }*/
 
     @Override
     public PostFileHandlerContext execute(PreFileHandlerContext context) {

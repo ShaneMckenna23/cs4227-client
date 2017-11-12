@@ -26,8 +26,8 @@ public class Img4u {
         return fileHandlerManager.saveImage(directory,image);
     }
 
-    public void saveStrategy(String directory, String imageName, String extension, BufferedImage image) {
-        fileWriterTarget.saveStrategy(directory, imageName, extension, image);
+    public String saveStrategy(String path, String imageName, String extension, BufferedImage image) {
+        return fileHandlerManager.saveStrategy(path, imageName, extension, image);
     }
 
     public BufferedImage adjustImageBrightness(BufferedImage image, int brightnessValue) {

@@ -45,6 +45,7 @@ public class EditorController {
         imageModel = new ImageModel(this.imageView.getImage());
         explorerOpenModel = new ExplorerOpenModel();
         explorerSaveModel = new ExplorerSaveModel();
+        explorerSaveStrategyModel = new ExplorerSaveStrategyModel();
 
 
         //Wire Views -> Commands -> Models
@@ -93,6 +94,9 @@ public class EditorController {
     private void initializeExplorerClose() {
         this.explorerSave.addApproveCommand(new SaveImageCommand(explorerSave, imageModel, explorerSaveModel));
         this.explorerSave.addCancelCommand(new CloseExplorerCommand(explorerOpenModel, explorerSave));
+
+        this.explorerSaveStrategy.addApproveCommand(new SaveImageCommand(explorerSaveStrategy, imageModel, explorerSaveStrategyModel));
+        this.explorerSaveStrategy.addCancelCommand(new CloseExplorerCommand(explorerOpenModel, explorerSaveStrategy));
     }
 
     class ComponentListener implements ActionListener, ChangeListener {

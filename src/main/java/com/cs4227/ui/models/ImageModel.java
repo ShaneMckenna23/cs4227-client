@@ -41,7 +41,6 @@ public class ImageModel {
         this.image = img4u.applyFilter(image, filterType);
     }
 
-
     public String getAlertMessage() {
         return alertMessage;
     }

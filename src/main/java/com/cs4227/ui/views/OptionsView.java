@@ -51,7 +51,7 @@ public class OptionsView extends JFrame implements ComponentView{
         components.add(btnOpen);
 
         btnSave = new Button("SAVE");
-        btnSave.setMnemonic(KeyEvent.VK_S);
+        btnSave.setMnemonic(KeyEvent.VK_T);
         gbc.gridx = 2;
         gbc.gridy = 0;
         gridbag.setConstraints(btnSave, gbc);
@@ -75,7 +75,7 @@ public class OptionsView extends JFrame implements ComponentView{
         components.add(btnRedo);
 
         btnSaveSt = new Button("SAVEST");
-        btnSaveSt.setMnemonic(KeyEvent.VK_T);
+        btnSaveSt.setMnemonic(KeyEvent.VK_S);
         gbc.gridx = 5;
         gbc.gridy = 0;
         gridbag.setConstraints(btnSaveSt, gbc);
