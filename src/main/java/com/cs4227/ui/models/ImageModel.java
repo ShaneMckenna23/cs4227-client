@@ -37,18 +37,16 @@ public class ImageModel {
         this.image = img4u.applyFilter(image, filterType);
     }
 
-<<<<<<< HEAD
+
     public String getAlertMessage() {
         return alertMessage;
-=======
+    }
 
     public void ApplyRotate(String rotateDir, String RotaateDeg) {
         this.image = img4u.applyRotate(image, rotateDir, RotaateDeg);
     }
 
-
     public void ApplySizeChange(int w, int h) {
         this.image = img4u.applySizeChange(image, w, h);
->>>>>>> a24bacb79d7fc0068403169d74c62ddf570f266b
     }
 }
