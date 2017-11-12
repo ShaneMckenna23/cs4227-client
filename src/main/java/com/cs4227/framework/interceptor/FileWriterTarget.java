@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import javax.imageio.ImageIO;
 import java.io.File;
+import java.io.IOException;
 
 public class FileWriterTarget implements BaseFileHandlerTarget {
 
@@ -31,11 +32,14 @@ public class FileWriterTarget implements BaseFileHandlerTarget {
             String filename = pathParts[pathParts.length-1];
             String fileExtension = filename.split("\\.")[1]+"";
             ImageIO.write(context.getImage(), fileExtension, outputFile);
-        }catch (Exception e){
-            System.out.print("Error!");
-            e.printStackTrace();
+            setSuccessState();
+        } catch (IOException e) {
+            setFailureState();
+            logger.error(IO_ERROR + context.getDirectory(), e);
+        } catch (Exception e) {
+            setFailureState();
+            logger.error(UNKNOWN_ERROR + context.getDirectory(), e);
         }
-        setFailureState();
         PostFileHandlerContext postRequestContext = createPostRequestContext(context);
         postRequestContext.setOutcomeContext(outcomeContext);
         return postRequestContext;
