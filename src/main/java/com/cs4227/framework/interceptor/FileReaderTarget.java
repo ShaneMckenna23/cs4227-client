@@ -30,8 +30,6 @@ public class FileReaderTarget implements BaseFileHandlerTarget {
         File selectedFile = new File(context.getDirectory());
         try {
             BufferedImage selectedImage = ImageIO.read(selectedFile);
-            int width = selectedImage.getWidth();
-            int height = selectedImage.getHeight();
             postRequestContext.setImage(selectedImage);
             setSuccessState();
         } catch (IOException e) {

@@ -1,8 +1,8 @@
 package com.cs4227.framework.interceptor.state;
 
 public class StateContext {
-    private BaseState state;
 
+    private BaseState state;
     private String creatorClass;
 
     public StateContext(){
