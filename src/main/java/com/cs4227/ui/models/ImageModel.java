@@ -13,12 +13,9 @@ public class ImageModel {
         this.image = image;
         this.img4u = new Img4u();
     }
+
     public BufferedImage getImage(){
         return image;
-    }
-
-    public void setImage(BufferedImage image){
-        this.image = image;
     }
 
     public void readImage(FileChooser fileChooser) {

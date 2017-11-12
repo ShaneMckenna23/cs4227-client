@@ -53,7 +53,7 @@ public class AdjustmentsView extends JFrame implements ComponentView{
         gridbag.setConstraints(lblFilter, gbc);
         buttonPanel.add(lblFilter,gbc);
 
-        String tempTypes[] = {"Select Filter", "Monochrome"};
+        String tempTypes[] = {"Select Filter", "Monochrome", "Red", "Green", "Blue"};
         cmbFilter = new ComboBox(tempTypes, "FilterTypes");
         gbc.gridx = 0;
         gbc.gridy = 1;
