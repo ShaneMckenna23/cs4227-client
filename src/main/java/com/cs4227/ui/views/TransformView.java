@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.EventListener;
 
 import com.cs4227.ui.commands.*;
 import com.cs4227.ui.components.Button;
@@ -129,9 +130,9 @@ public class TransformView extends JFrame implements ComponentView{
     }
 
     @Override
-    public void addComponentListener(ActionListener componentListener) {
+    public void addComponentListener(EventListener componentListener) {
         for(Component c: components){
-            c.addActionListener(componentListener);
+            c.addEventListener(componentListener);
         }
     }
 

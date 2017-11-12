@@ -29,4 +29,8 @@ public class ImageModel {
     public void saveImage(String path) {
         img4u.saveImage(path, image);
     }
+
+    public void adjustImageBrightness(int brightnessValue) {
+        this.image = img4u.adjustImageBrightness(image, brightnessValue);
+    }
 }

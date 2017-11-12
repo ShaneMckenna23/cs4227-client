@@ -4,7 +4,9 @@ import com.cs4227.ui.commands.Command;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
+import java.util.EventListener;
 
 public class Slider extends JSlider implements Component{
 
@@ -25,8 +27,7 @@ public class Slider extends JSlider implements Component{
     }
 
     @Override
-    public void addActionListener(ActionListener componentListener) {
-
+    public void addEventListener(EventListener componentListener) {
+        this.addChangeListener((ChangeListener) componentListener);
     }
-
 }

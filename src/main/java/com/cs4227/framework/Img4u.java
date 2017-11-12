@@ -19,4 +19,10 @@ public class Img4u {
     public void saveImage(String directory, BufferedImage image) {
         fileHandlerManager.saveImage(directory,image);
     }
+
+    public BufferedImage adjustImageBrightness(BufferedImage image, int brightnessValue) {
+        System.out.print("Brightness value: " + brightnessValue);
+        //todo
+        return image;
+    }
 }

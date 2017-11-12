@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.EventListener;
 
 import com.cs4227.ui.commands.*;
 import com.cs4227.ui.components.Button;
@@ -32,28 +33,7 @@ public class AdjustmentsView extends JFrame implements ComponentView{
 
         //Button Panel
         JPanel buttonPanel = new JPanel();
-
         components = new ArrayList<Component>();
-
-        lblFilter = new JLabel("Filter Type:");
-        lblBrightness = new JLabel("Brigtness");
-        lblBrightnessValues = new JLabel("-100       -50       0        50        100");
-
-        String tempTypes[] = {"Select Filter", "Monochrome"};
-
-        cmbFilter = new ComboBox(tempTypes, "FilterTypes");
-
-        btnApplyF = new Button("APPLY");
-        btnApplyF.setMnemonic(KeyEvent.VK_F);
-        sldBrightness = new Slider(-100,100, 0, "sldBrightness");
-        sldBrightness.addChangeListener(new ChangeListener() {
-            @Override //Our brightness command needs to extend JSlider and do this bit
-            public void stateChanged(ChangeEvent e) {
-                // TODO Auto-generated method stub
-                JSlider slider = (JSlider) e.getSource();
-                System.out.println("Slider: " + slider.getValue());
-            }
-        });
 
         //Layout
         GridBagLayout gridbag = new GridBagLayout();
@@ -65,35 +45,44 @@ public class AdjustmentsView extends JFrame implements ComponentView{
         gbc.insets.left = 5;
         gbc.insets.right = 5;
 
+        //Components
+        lblFilter = new JLabel("Filter Type:");
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.gridx = 0;
         gbc.gridy = 0;
         gridbag.setConstraints(lblFilter, gbc);
         buttonPanel.add(lblFilter,gbc);
 
+        String tempTypes[] = {"Select Filter", "Monochrome"};
+        cmbFilter = new ComboBox(tempTypes, "FilterTypes");
         gbc.gridx = 0;
         gbc.gridy = 1;
         gridbag.setConstraints(cmbFilter, gbc);
         buttonPanel.add(cmbFilter);
         components.add(cmbFilter);
 
+        btnApplyF = new Button("APPLY");
+        btnApplyF.setMnemonic(KeyEvent.VK_F);
         gbc.gridx = 0;
         gbc.gridy = 2;
         gridbag.setConstraints(btnApplyF, gbc);
         buttonPanel.add(btnApplyF);
         components.add(btnApplyF);
 
+        lblBrightness = new JLabel("Brightness");
         gbc.gridx = 0;
         gbc.gridy = 3;
         gridbag.setConstraints(lblBrightness, gbc);
         buttonPanel.add(lblBrightness,gbc);
 
+        sldBrightness = new Slider(-100,100, 0, "sldBrightness");
         gbc.gridx = 0;
         gbc.gridy = 4;
         gridbag.setConstraints(sldBrightness, gbc);
         buttonPanel.add(sldBrightness);
         components.add(sldBrightness);
 
+        lblBrightnessValues = new JLabel("-100       -50       0        50        100");
         gbc.gridx = 0;
         gbc.gridy = 5;
         gridbag.setConstraints(lblBrightnessValues, gbc);
@@ -105,9 +94,9 @@ public class AdjustmentsView extends JFrame implements ComponentView{
     }
 
     @Override
-    public void addComponentListener(ActionListener componentListener) {
+    public void addComponentListener(EventListener componentListener) {
         for(Component c: components){
-            c.addActionListener(componentListener);
+            c.addEventListener(componentListener);
         }
     }
 
@@ -118,5 +107,9 @@ public class AdjustmentsView extends JFrame implements ComponentView{
                 c.setCommand(command);
             }
         }
+    }
+
+    public int getBrightnessValue() {
+        return sldBrightness.getValue();
     }
 }

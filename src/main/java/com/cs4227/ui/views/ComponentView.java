@@ -2,9 +2,9 @@ package com.cs4227.ui.views;
 
 import com.cs4227.ui.commands.Command;
 
-import java.awt.event.ActionListener;
+import java.util.EventListener;
 
 public interface ComponentView {
-    void addComponentListener(ActionListener componentListener);
+    void addComponentListener(EventListener componentListener);
     void addCommandToComponent(String name, Command command);
 }

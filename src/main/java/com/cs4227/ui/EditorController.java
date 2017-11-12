@@ -7,6 +7,8 @@ import com.cs4227.ui.models.ImageModel;
 import com.cs4227.ui.models.ExplorerOpenModel;
 import com.cs4227.ui.views.*;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -63,9 +65,13 @@ public class EditorController {
     }
 
     private void initializeAdjustmentsView(ComponentListener componentListener) {
+        this.adjustmentsView.addComponentListener(componentListener);
+
+        this.adjustmentsView.addCommandToComponent("sldBrightness", new AdjustBrightnessCommand(adjustmentsView,imageView,imageModel));
     }
 
     private void initializeTransformView(ComponentListener componentListener) {
+        this.transformView.addComponentListener(componentListener);
     }
 
     private void initializeExplorerOpen() {
@@ -78,8 +84,15 @@ public class EditorController {
         this.explorerSave.addCancelCommand(new CloseExplorerCommand(explorerOpenModel, explorerSave));
     }
 
-    class ComponentListener implements ActionListener {
+    class ComponentListener implements ActionListener, ChangeListener {
+        @Override
         public void actionPerformed(ActionEvent e) {
+            Component component = (Component) e.getSource();
+            component.onAction();
+        }
+
+        @Override
+        public void stateChanged(ChangeEvent e) {
             Component component = (Component) e.getSource();
             component.onAction();
         }
