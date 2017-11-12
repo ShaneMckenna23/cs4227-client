@@ -41,11 +41,11 @@ public class AdjustmentsView extends JFrame implements View{
 
         String tempTypes[] = {"Select Filter", "Monochrome"};
 
-        cmbFilter = new ComboBox(tempTypes);
+        cmbFilter = new ComboBox(tempTypes, "FilterTypes");
 
         btnApplyF = new Button("APPLY");
         btnApplyF.setMnemonic(KeyEvent.VK_F);
-        sldBrightness = new Slider(-100,100, 0);
+        sldBrightness = new Slider(-100,100, 0, "sldBrightness");
         sldBrightness.addChangeListener(new ChangeListener() {
             @Override //Our brightness command needs to extend JSlider and do this bit
             public void stateChanged(ChangeEvent e) {

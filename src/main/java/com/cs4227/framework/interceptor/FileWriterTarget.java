@@ -5,6 +5,9 @@ import com.cs4227.framework.interceptor.state.TargetFailureState;
 import com.cs4227.framework.interceptor.state.TargetSuccessState;
 import org.apache.log4j.Logger;
 
+import javax.imageio.ImageIO;
+import java.io.File;
+
 public class FileWriterTarget implements BaseFileHandlerTarget {
 
     private static final String UNKNOWN_ERROR = "An unknown error occurred when attempting"
@@ -21,7 +24,17 @@ public class FileWriterTarget implements BaseFileHandlerTarget {
 
     @Override
     public PostFileHandlerContext execute(PreFileHandlerContext context) {
-        //todo
+        try{
+            File outputFile = new File(context.getDirectory());
+            String path = context.getDirectory().toString();
+            String[] pathParts = path.split("\\\\");
+            String filename = pathParts[pathParts.length-1];
+            String fileExtension = filename.split("\\.")[1]+"";
+            ImageIO.write(context.getImage(), fileExtension, outputFile);
+        }catch (Exception e){
+            System.out.print("Error!");
+            e.printStackTrace();
+        }
         setFailureState();
         PostFileHandlerContext postRequestContext = createPostRequestContext(context);
         postRequestContext.setOutcomeContext(outcomeContext);

@@ -9,19 +9,21 @@ import com.cs4227.ui.views.ImageView;
 public class SaveImageCommand implements Command {
 
     private ImageModel imageModel;
+    private ExplorerModel explorerModel;
     private ExplorerView explorerView;
 
-    public SaveImageCommand(ExplorerView explorerView, ImageModel imageModel){
+    public SaveImageCommand(ExplorerView explorerView, ImageModel imageModel, ExplorerModel explorerModel){
         this.imageModel = imageModel;
         this.explorerView = explorerView;
+        this.explorerModel = explorerModel;
     }
 
     @Override
     public void execute() {
-        FileChooser fileChooser = explorerView.getFileChooser();
-        String path = fileChooser.getSelectedFile().getAbsolutePath();
-        String fileName = fileChooser.getSelectedFile().getName();
-        imageModel.saveImage(fileName, path);
+        String path = explorerView.getFileChooser().getSelectedFile().getAbsolutePath();
+        imageModel.saveImage(path);
+        explorerModel.close();
+        explorerView.setVisible(explorerModel.getIsExplorerOpen());
     }
 
     @Override

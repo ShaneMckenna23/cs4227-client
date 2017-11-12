@@ -40,10 +40,10 @@ public class TransformView extends JFrame implements View{
         lblRotateDeg = new JLabel("Degrees:");
 
         String tempDir[] = {"Clockwise", "Anti-Clockwise"};
-        cmbRotateDir = new ComboBox(tempDir);
+        cmbRotateDir = new ComboBox(tempDir, "Direction");
 
         String tempDeg[] = {"90 Degrees", "180 Degrees"};
-        cmbRotateDeg = new ComboBox(tempDeg);
+        cmbRotateDeg = new ComboBox(tempDeg, "Degree");
 
         btnApplyR = new Button("ROTATE");
         btnApplyR.setMnemonic(KeyEvent.VK_R);

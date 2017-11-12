@@ -10,9 +10,9 @@ public class Slider extends JSlider implements Component{
 
     Command command;
 
-    public Slider(int MIN, int MAX, int INIT) {
+    public Slider(int MIN, int MAX, int INIT, String name) {
         super(MIN, MAX, INIT);
-        //this.setName(name);
+        this.setName(name);
     }
 
     @Override

@@ -8,9 +8,9 @@ public class TextField extends JTextField implements Component{
 
     Command command;
 
-    public TextField(int col) {
+    public TextField(int col, String name) {
         super(col);
-        //this.setName(name);
+        this.setName(name);
     }
 
     @Override

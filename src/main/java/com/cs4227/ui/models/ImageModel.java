@@ -1,16 +1,17 @@
 package com.cs4227.ui.models;
 
+import com.cs4227.framework.Img4u;
 import com.cs4227.ui.components.FileChooser;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 public class ImageModel {
     private BufferedImage image;
+    private Img4u img4u;
 
     public ImageModel(BufferedImage image){
         this.image = image;
+        this.img4u = new Img4u();
     }
     public BufferedImage getImage(){
         return image;
@@ -21,24 +22,11 @@ public class ImageModel {
     }
 
     public void readImage(FileChooser fileChooser) {
-        try {
-            File selectedFile = fileChooser.getSelectedFile();
-            BufferedImage selectedImage = ImageIO.read(selectedFile);
-            this.image = selectedImage;
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        String path = fileChooser.getSelectedFile().getPath();
+        this.image = img4u.openImage(path);
     }
 
-    public void saveImage(String filename,String path) {
-        try{
-            File outputfile = new File(path);
-            String fileExtension = filename.split("\\.")[1]+"";
-            System.out.print(fileExtension);
-            ImageIO.write(image, fileExtension, outputfile);
-        }catch (Exception e){
-            System.out.print("Error!");
-            e.printStackTrace();
-        }
+    public void saveImage(String path) {
+        img4u.saveImage(path, image);
     }
 }

@@ -8,9 +8,9 @@ public class ComboBox extends JComboBox implements Component{
 
     Command command;
 
-    public ComboBox(String types[]) {
+    public ComboBox(String types[],String name) {
         super(types);
-        //this.setName(name);
+        this.setName(name);
     }
 
     @Override

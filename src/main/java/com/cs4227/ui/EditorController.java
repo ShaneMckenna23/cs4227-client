@@ -8,7 +8,6 @@ import com.cs4227.ui.models.ExplorerOpenModel;
 import com.cs4227.ui.views.ExplorerView;
 import com.cs4227.ui.views.ImageView;
 import com.cs4227.ui.views.OptionsView;
-import com.cs4227.ui.views.ToolboxView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +16,7 @@ public class EditorController {
 
     private ImageView imageView;
     private OptionsView optionsView;
-    private ToolboxView toolboxView;
+
     private ExplorerView explorerOpen;
     private ExplorerView explorerSave;
 
@@ -25,12 +24,12 @@ public class EditorController {
     private ExplorerOpenModel explorerOpenModel;
     private ExplorerSaveModel explorerSaveModel;
 
-    public EditorController(ImageView imageView, OptionsView optionsView, ToolboxView toolboxView) {
+    public EditorController(ImageView imageView, OptionsView optionsView) {
 
         //Views
         this.imageView = imageView;
         this.optionsView = optionsView;
-        this.toolboxView = toolboxView;
+
         this.explorerOpen = new ExplorerView("OPEN");
         this.explorerSave = new ExplorerView("SAVE");
 
@@ -42,7 +41,6 @@ public class EditorController {
         //Wire Views -> Commands -> Models
         ComponentListener componentListener = new ComponentListener();
         initializeImageView(componentListener);
-        initializeToolBoxView(componentListener);
         initializeOptionsView(componentListener);
 
         initializeExplorerOpen();
@@ -55,16 +53,13 @@ public class EditorController {
     }
 
     private void initializeExplorerClose() {
-        this.explorerSave.addApproveCommand(new SaveImageCommand(explorerSave, imageModel));
+        this.explorerSave.addApproveCommand(new SaveImageCommand(explorerSave, imageModel, explorerSaveModel));
         this.explorerSave.addCancelCommand(new CloseExplorerCommand(explorerOpenModel, explorerSave));
     }
 
     private void initializeImageView(ComponentListener componentListener) {
     }
 
-    private void initializeToolBoxView(ComponentListener componentListener) {
-        this.toolboxView.addComponentListener(componentListener);
-    }
 
     private void initializeOptionsView(ComponentListener componentListener) {
         this.optionsView.addComponentListener(componentListener);
