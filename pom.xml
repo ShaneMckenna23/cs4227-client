@@ -158,7 +158,7 @@
             <configuration>
               <headerType>GUI</headerType>
               <jar>${project.build.directory}/${artifactId}-${version}-shaded.jar</jar>
-              <outfile>${project.build.directory}/ejit.exe</outfile>
+              <outfile>${project.build.directory}/Img4u.exe</outfile>
               <downloadUrl>http://java.com/download</downloadUrl>
               <classPath>
                 <mainClass>com.cs4227.ui.Start</mainClass>
@@ -173,13 +173,13 @@
                 <fileVersion>1.0.0.0</fileVersion>
                 <txtFileVersion>${project.version}</txtFileVersion>
                 <fileDescription>${project.name}</fileDescription>
-                <copyright>2012 ejit.com</copyright>
+                <copyright>2017 img4u.com</copyright>
                 <productVersion>1.0.0.0</productVersion>
                 <txtProductVersion>1.0.0.0</txtProductVersion>
                 <productName>${project.name}</productName>
-                <companyName>ejit.com</companyName>
-                <internalName>ejit</internalName>
-                <originalFilename>ejit.exe</originalFilename>
+                <companyName>img4u.com</companyName>
+                <internalName>img4u</internalName>
+                <originalFilename>Img4u.exe</originalFilename>
               </versionInfo>
             </configuration>
           </execution>
