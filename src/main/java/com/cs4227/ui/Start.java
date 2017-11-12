@@ -1,9 +1,7 @@
 package com.cs4227.ui;
 
 import com.cs4227.framework.memento.MementoControl;
-import com.cs4227.ui.views.ImageView;
-import com.cs4227.ui.views.OptionsView;
-import com.cs4227.ui.views.ToolboxView;
+import com.cs4227.ui.views.*;
 
 import javax.imageio.ImageIO;
 
@@ -20,12 +18,16 @@ public class Start {
         ImageView imageView = new ImageView(selectedImage);
         OptionsView optionsView = new OptionsView();
         ToolboxView toolboxView = new ToolboxView();
+        AdjustmentsView adjustmentsView = new AdjustmentsView();
+        TransformView transformView = new TransformView();
 
         EditorController editorController = new EditorController(imageView,optionsView,toolboxView);
 
         imageView.setVisible(true);
         optionsView.setVisible(true);
         toolboxView.setVisible(true);
+        adjustmentsView.setVisible(true);
+        transformView.setVisible(true);
     }
 
 
