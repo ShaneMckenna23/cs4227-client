@@ -3,19 +3,15 @@ package com.cs4227.framework.filters;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import java.io.*;
-
-import javax.imageio.ImageIO;
-
 public class Monochrome implements Filter {
 
     BufferedImage  image;
     int width;
     int height;
 
-    public File convert(File fileImage){
+    public BufferedImage convert(BufferedImage image){
         try {
-            image = ImageIO.read(fileImage);
+            this.image = image;
             width = image.getWidth();
             height = image.getHeight();
 
@@ -34,10 +30,7 @@ public class Monochrome implements Filter {
                     image.setRGB(j,i,newColor.getRGB());
                 }
             }
-
-            File ouptut = new File("grayscale.jpg");
-            ImageIO.write(image, "jpg", ouptut);
-            return ouptut;
+            return image;
 
         } catch (Exception e) {}
         return null;

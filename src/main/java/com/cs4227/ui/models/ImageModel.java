@@ -33,4 +33,8 @@ public class ImageModel {
     public void adjustImageBrightness(int brightnessValue) {
         this.image = img4u.adjustImageBrightness(image, brightnessValue);
     }
+
+    public void ApplyFilter(String filterType) {
+        this.image = img4u.applyFilter(image, filterType);
+    }
 }

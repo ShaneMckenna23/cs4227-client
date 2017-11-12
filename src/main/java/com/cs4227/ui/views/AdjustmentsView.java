@@ -59,7 +59,7 @@ public class AdjustmentsView extends JFrame implements ComponentView{
         gbc.gridy = 1;
         gridbag.setConstraints(cmbFilter, gbc);
         buttonPanel.add(cmbFilter);
-        components.add(cmbFilter);
+        //components.add(cmbFilter);
 
         btnApplyF = new Button("APPLY");
         btnApplyF.setMnemonic(KeyEvent.VK_F);
@@ -111,5 +111,9 @@ public class AdjustmentsView extends JFrame implements ComponentView{
 
     public int getBrightnessValue() {
         return sldBrightness.getValue();
+    }
+
+    public String getFilterType(){
+        return cmbFilter.getSelectedItem().toString();
     }
 }

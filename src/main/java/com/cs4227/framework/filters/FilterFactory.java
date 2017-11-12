@@ -1,7 +1,5 @@
 package com.cs4227.framework.filters;
 
-import com.cs4227.framework.filters.Monochrome;
-
 public class FilterFactory {
 
     public Filter createFilter(String filterType){

@@ -77,7 +77,7 @@ public class TransformView extends JFrame implements ComponentView{
         gbc.gridy = 2;
         gridbag.setConstraints(cmbRotateDir, gbc);
         buttonPanel.add(cmbRotateDir,gbc);
-        components.add(cmbRotateDir);
+        //components.add(cmbRotateDir);
 
         gbc.gridx = 0;
         gbc.gridy = 3;
@@ -88,7 +88,7 @@ public class TransformView extends JFrame implements ComponentView{
         gbc.gridy = 4;
         gridbag.setConstraints(cmbRotateDeg, gbc);
         buttonPanel.add(cmbRotateDeg,gbc);
-        components.add(cmbRotateDeg);
+        //components.add(cmbRotateDeg);
 
         gbc.gridx = 0;
         gbc.gridy = 5;

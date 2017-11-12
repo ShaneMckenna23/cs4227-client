@@ -1,8 +1,7 @@
 package com.cs4227.framework.filters;
 
-import java.io.File;
+import java.awt.image.BufferedImage;
 
 public interface Filter {
-
-    public File convert(File image);
+    BufferedImage convert(BufferedImage image);
 }

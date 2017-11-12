@@ -68,6 +68,7 @@ public class EditorController {
         this.adjustmentsView.addComponentListener(componentListener);
 
         this.adjustmentsView.addCommandToComponent("sldBrightness", new AdjustBrightnessCommand(adjustmentsView,imageView,imageModel));
+        this.adjustmentsView.addCommandToComponent("APPLY", new ApplyFilterCommand(adjustmentsView, imageView, imageModel));
     }
 
     private void initializeTransformView(ComponentListener componentListener) {

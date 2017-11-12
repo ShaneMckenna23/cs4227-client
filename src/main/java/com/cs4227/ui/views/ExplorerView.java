@@ -17,9 +17,9 @@ public class ExplorerView extends JFrame {
         fileChooser = new FileChooser("C://Users");
         fileChooser.setControlButtonsAreShown(true);
         if (type.equals("OPEN")){
-            fileChooser.setDialogType(fileChooser.OPEN_DIALOG);
+            fileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
         }else {
-            fileChooser.setDialogType(fileChooser.SAVE_DIALOG);
+            fileChooser.setDialogType(JFileChooser.SAVE_DIALOG);
         }
         add(fileChooser, BorderLayout.CENTER);
         this.pack();
