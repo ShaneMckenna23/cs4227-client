@@ -60,8 +60,8 @@ public class EditorController {
 
         this.optionsView.addCommandToComponent("OPEN", new OpenExplorerCommand(explorerOpenModel, explorerOpen));
         this.optionsView.addCommandToComponent("SAVE", new OpenExplorerCommand(explorerSaveModel, explorerSave));
-        this.optionsView.addCommandToComponent("UNDO", new UndoCommand());
-        this.optionsView.addCommandToComponent("REDO", new RedoCommand());
+        this.optionsView.addCommandToComponent("UNDO", new UndoCommand(imageView));
+        this.optionsView.addCommandToComponent("REDO", new RedoCommand(imageView));
     }
 
     private void initializeAdjustmentsView(ComponentListener componentListener) {

@@ -28,20 +28,4 @@ public class Start {
         EditorController editorController = new EditorController(imageView,optionsView,adjustmentsView,transformView);
     }
 
-
-    public static void modifyImage(BufferedImage image) throws Exception {
-
-        MementoControl.originator.set( image );
-        MementoControl.caretaker.addMemento( MementoControl.originator.storeInMemento() );
-
-        MementoControl.setImagePathCount( MementoControl.getImageCount() + 1 );
-        MementoControl.setCurrentPathIndex( MementoControl.getCurrentPathIndex() + 1 );
-
-        refreshImage(image, image.getWidth(), image.getHeight());
-    }
-
-    public static void refreshImage (BufferedImage image, int w, int h) throws Exception {
-
-
-    }
 }
