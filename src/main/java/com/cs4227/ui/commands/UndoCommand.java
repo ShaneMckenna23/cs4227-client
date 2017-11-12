@@ -1,11 +1,17 @@
 package com.cs4227.ui.commands;
 
 import com.cs4227.framework.memento.MementoControl;
-import com.cs4227.ui.Start;
+import com.cs4227.ui.views.ImageView;
 
 import java.awt.image.BufferedImage;
 
 public class UndoCommand implements Command {
+
+    public ImageView imageView;
+
+    public UndoCommand(ImageView imageView){
+        this.imageView = imageView;
+    }
 
     public void execute() {
         System.out.print("Undo");
@@ -19,7 +25,7 @@ public class UndoCommand implements Command {
 
             BufferedImage imagePath = MementoControl.originator.restoreFromMemento( MementoControl.caretaker.getMemento(currentImage) );
             try {
-                Start.refreshImage(imagePath, imagePath.getWidth(), imagePath.getHeight());
+                imageView.changeImage(imagePath);
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -1,5 +1,8 @@
 package com.cs4227.ui.views;
 
+import com.cs4227.framework.memento.MementoControl;
+import com.cs4227.framework.visitor.ImageValueProcessor;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -43,7 +46,23 @@ public class ImageView extends JFrame {
     public BufferedImage getImage(){
         return selectedImage;
     }
+
     public void setImage(BufferedImage image){
+
+        MementoControl.originator.set( image );
+        MementoControl.caretaker.addMemento( MementoControl.originator.storeInMemento() );
+        MementoControl.setImagePathCount( MementoControl.getImageCount() + 1 );
+        MementoControl.setCurrentPathIndex( MementoControl.getCurrentPathIndex() + 1 );
+
+        //This is just a text output for the visitor
+        ImageValueProcessor visitorExample = new ImageValueProcessor(image);
+
+        changeImage(image);
+    }
+
+    public void changeImage(BufferedImage image){
+
+        // I'll need this method for the memento
         selectedImage = image;
         imageLabel.setIcon(new ImageIcon(selectedImage));
     }
