@@ -1,5 +1,7 @@
 package com.cs4227.ui.views;
 
+import com.cs4227.framework.strategy.SaveAsJPG;
+import com.cs4227.framework.strategy.SaveAsPNG;
 import com.cs4227.ui.commands.Command;
 import com.cs4227.ui.components.FileChooser;
 
@@ -16,9 +18,20 @@ public class ExplorerView extends JFrame {
 
         fileChooser = new FileChooser("C://Users");
         fileChooser.setControlButtonsAreShown(true);
-        if (type.equals("OPEN")){
+
+        if (type.equals("OPEN")) {
             fileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
-        }else {
+        }
+        else if (type.equals("SAVEST")) {
+            fileChooser.setControlButtonsAreShown(true);
+            fileChooser.setDialogType(fileChooser.SAVE_DIALOG);
+
+            fileChooser.addChoosableFileFilter(new SaveAsJPG());
+            fileChooser.addChoosableFileFilter(new SaveAsPNG());
+
+            fileChooser.setAcceptAllFileFilterUsed(false);
+        }
+        else if (type.equals("SAVE")){
             fileChooser.setDialogType(JFileChooser.SAVE_DIALOG);
         }
         add(fileChooser, BorderLayout.CENTER);
