@@ -26,12 +26,13 @@ public class FileHandlerManager {
         return postRequestContext.getImage();
     }
 
-    public void saveImage(String directory, BufferedImage image) {
+    public String saveImage(String directory, BufferedImage image) {
         dispatcherManager = new FileHandlerDispatcherManager(new FileWriterTarget());
         PreFileHandlerContext context = createPreFileHandlerContext(directory,
                 Thread.currentThread().getStackTrace()[1].getMethodName());
         context.setImage(image);
-        dispatcherManager.executeFileHandlerRequest(context);
+        PostFileHandlerContext postRequestContext = dispatcherManager.executeFileHandlerRequest(context);
+        return postRequestContext.getOutcomeContext().getState().stateMessage();
     }
 
     public void enableLogging() {
