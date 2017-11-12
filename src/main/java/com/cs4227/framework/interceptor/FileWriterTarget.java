@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class FileWriterTarget implements BaseFileHandlerTarget {
+    private FileHandlerDispatcherManager dispatcherManager;
 
     private static final String UNKNOWN_ERROR = "An unknown error occurred when attempting"
             + "to overwrite the file from directory: ";
@@ -24,7 +25,8 @@ public class FileWriterTarget implements BaseFileHandlerTarget {
         outcomeContext = new StateContext();
     }
 
-   /* public String saveStrategy(String path, String imageName, String extension, BufferedImage image) {
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public String saveStrategy(String path, String imageName, String extension, BufferedImage image) {
         String directory = path + "/" + imageName + extension;
 
         System.out.println("\n" + directory);
@@ -34,8 +36,17 @@ public class FileWriterTarget implements BaseFileHandlerTarget {
                 Thread.currentThread().getStackTrace()[1].getMethodName());
         context.setImage(image);
         PostFileHandlerContext postRequestContext = dispatcherManager.executeFileHandlerRequest(context);
-        return directory;
-    }*/
+        return postRequestContext.getOutcomeContext().getState().stateMessage();
+    }
+
+    private PreFileHandlerContext createPreFileHandlerContext(String directory, String method) {
+        PreFileHandlerContext context = new PreFileHandlerContext();
+        context.setDirectory(directory);
+        context.setMethod(method);
+        context.setStartTime(System.nanoTime());
+        return context;
+    }
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
     public PostFileHandlerContext execute(PreFileHandlerContext context) {

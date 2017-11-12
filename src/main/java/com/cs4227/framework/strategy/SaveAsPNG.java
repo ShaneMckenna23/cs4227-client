@@ -4,16 +4,16 @@ import javax.swing.filechooser.FileFilter;
 import java.io.File;
 
 public class SaveAsPNG extends FileFilter implements SaveAsStrategy {
-    public boolean accept(File f)
+    public boolean accept(File file)
     {
-        if (f.isDirectory())
+        if (file.isDirectory())
         {
             return false;
         }
 
-        String s = f.getName();
+        String name = file.getName();
 
-        return s.endsWith(".png")||s.endsWith(".PNG");
+        return name.endsWith(".png")||name.endsWith(".PNG");
     }
 
     public String getDescription()

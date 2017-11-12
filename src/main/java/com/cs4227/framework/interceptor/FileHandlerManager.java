@@ -35,19 +35,6 @@ public class FileHandlerManager {
         return postRequestContext.getOutcomeContext().getState().stateMessage();
     }
 
-    public String saveStrategy(String path, String imageName, String extension, BufferedImage image) {
-        String directory = path + "/" + imageName + extension;
-
-        System.out.println("\n" + directory);
-
-        dispatcherManager = new FileHandlerDispatcherManager(new FileWriterTarget());
-        PreFileHandlerContext context = createPreFileHandlerContext(directory,
-                Thread.currentThread().getStackTrace()[1].getMethodName());
-        context.setImage(image);
-        PostFileHandlerContext postRequestContext = dispatcherManager.executeFileHandlerRequest(context);
-        return postRequestContext.getOutcomeContext().getState().stateMessage();
-    }
-
     public void enableLogging() {
         if(loggingContext.getState() == loggingDisabledState) {
             loggingDisabledState.toggle(loggingContext);
