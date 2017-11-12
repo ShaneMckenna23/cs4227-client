@@ -14,7 +14,7 @@ import com.cs4227.ui.components.ComboBox;
 import com.cs4227.ui.components.Component;
 import com.cs4227.ui.components.Slider;
 
-public class AdjustmentsView extends JFrame implements View{
+public class AdjustmentsView extends JFrame implements ComponentView{
 
     private ArrayList<Component> components;
     private ComboBox cmbFilter;
@@ -106,7 +106,7 @@ public class AdjustmentsView extends JFrame implements View{
 
     @Override
     public void addComponentListener(ActionListener componentListener) {
-        for(com.cs4227.ui.components.Component c: components){
+        for(Component c: components){
             c.addActionListener(componentListener);
         }
     }

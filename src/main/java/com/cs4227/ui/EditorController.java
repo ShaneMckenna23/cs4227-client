@@ -5,9 +5,7 @@ import com.cs4227.ui.components.Component;
 import com.cs4227.ui.models.ExplorerSaveModel;
 import com.cs4227.ui.models.ImageModel;
 import com.cs4227.ui.models.ExplorerOpenModel;
-import com.cs4227.ui.views.ExplorerView;
-import com.cs4227.ui.views.ImageView;
-import com.cs4227.ui.views.OptionsView;
+import com.cs4227.ui.views.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +14,8 @@ public class EditorController {
 
     private ImageView imageView;
     private OptionsView optionsView;
-
+    private AdjustmentsView adjustmentsView;
+    private TransformView transformView;
     private ExplorerView explorerOpen;
     private ExplorerView explorerSave;
 
@@ -24,11 +23,13 @@ public class EditorController {
     private ExplorerOpenModel explorerOpenModel;
     private ExplorerSaveModel explorerSaveModel;
 
-    public EditorController(ImageView imageView, OptionsView optionsView) {
+    public EditorController(ImageView imageView, OptionsView optionsView, AdjustmentsView adjustmentsView, TransformView transformView) {
 
         //Views
         this.imageView = imageView;
         this.optionsView = optionsView;
+        this.adjustmentsView = adjustmentsView;
+        this.transformView = transformView;
 
         this.explorerOpen = new ExplorerView("OPEN");
         this.explorerSave = new ExplorerView("SAVE");
@@ -42,9 +43,29 @@ public class EditorController {
         ComponentListener componentListener = new ComponentListener();
         initializeImageView(componentListener);
         initializeOptionsView(componentListener);
+        initializeAdjustmentsView(componentListener);
+        initializeTransformView(componentListener);
 
         initializeExplorerOpen();
         initializeExplorerClose();
+    }
+
+    private void initializeImageView(ComponentListener componentListener) {
+    }
+
+    private void initializeOptionsView(ComponentListener componentListener) {
+        this.optionsView.addComponentListener(componentListener);
+
+        this.optionsView.addCommandToComponent("OPEN", new OpenExplorerCommand(explorerOpenModel, explorerOpen));
+        this.optionsView.addCommandToComponent("SAVE", new OpenExplorerCommand(explorerSaveModel, explorerSave));
+        this.optionsView.addCommandToComponent("UNDO", new UndoCommand());
+        this.optionsView.addCommandToComponent("REDO", new RedoCommand());
+    }
+
+    private void initializeAdjustmentsView(ComponentListener componentListener) {
+    }
+
+    private void initializeTransformView(ComponentListener componentListener) {
     }
 
     private void initializeExplorerOpen() {
@@ -55,19 +76,6 @@ public class EditorController {
     private void initializeExplorerClose() {
         this.explorerSave.addApproveCommand(new SaveImageCommand(explorerSave, imageModel, explorerSaveModel));
         this.explorerSave.addCancelCommand(new CloseExplorerCommand(explorerOpenModel, explorerSave));
-    }
-
-    private void initializeImageView(ComponentListener componentListener) {
-    }
-
-
-    private void initializeOptionsView(ComponentListener componentListener) {
-        this.optionsView.addComponentListener(componentListener);
-
-        this.optionsView.addCommandToComponent("OPEN", new OpenExplorerCommand(explorerOpenModel, explorerOpen));
-        this.optionsView.addCommandToComponent("SAVE", new OpenExplorerCommand(explorerSaveModel, explorerSave));
-        this.optionsView.addCommandToComponent("UNDO", new UndoCommand());
-        this.optionsView.addCommandToComponent("REDO", new RedoCommand());
     }
 
     class ComponentListener implements ActionListener {

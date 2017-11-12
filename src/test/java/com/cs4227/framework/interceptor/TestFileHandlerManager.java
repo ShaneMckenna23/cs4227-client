@@ -12,7 +12,7 @@ import static junit.framework.TestCase.assertTrue;
 public class TestFileHandlerManager {
 
     private static final String TEST_IMAGE_DIRECTORY = System.getProperty("user.dir")
-            + "\\src\\test\\resources\\imageDefault.jpg";
+            + "/src/test/resources/imageDefault.jpg";
 
     private FileHandlerManager manager;
 

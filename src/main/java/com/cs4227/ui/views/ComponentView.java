@@ -4,7 +4,7 @@ import com.cs4227.ui.commands.Command;
 
 import java.awt.event.ActionListener;
 
-public interface View {
+public interface ComponentView {
     void addComponentListener(ActionListener componentListener);
     void addCommandToComponent(String name, Command command);
 }

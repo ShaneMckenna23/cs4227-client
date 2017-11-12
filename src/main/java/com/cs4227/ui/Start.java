@@ -17,16 +17,15 @@ public class Start {
 
         ImageView imageView = new ImageView(selectedImage);
         OptionsView optionsView = new OptionsView();
-
         AdjustmentsView adjustmentsView = new AdjustmentsView();
         TransformView transformView = new TransformView();
-
-        EditorController editorController = new EditorController(imageView,optionsView);
 
         imageView.setVisible(true);
         optionsView.setVisible(true);
         adjustmentsView.setVisible(true);
         transformView.setVisible(true);
+
+        EditorController editorController = new EditorController(imageView,optionsView,adjustmentsView,transformView);
     }
 
 

@@ -14,14 +14,14 @@ import com.cs4227.ui.components.ComboBox;
 import com.cs4227.ui.components.Component;
 import com.cs4227.ui.components.Slider;
 
-public class TransformView extends JFrame implements View{
+public class TransformView extends JFrame implements ComponentView{
 
     private ArrayList<Component> components;
     private ComboBox cmbRotateDir, cmbRotateDeg;
     private Button btnApplyR, btnApplyS;
     private TextField txtImageWidth, txtImageHeight;
 
-    private JLabel lblRotate, lblRotateDir, lblRotateDeg, lblSize, lblSizeWidth, lblSizeHeight;
+    private JLabel lblRotateDir, lblRotateDeg, lblSizeWidth, lblSizeHeight;
 
     public TransformView() {
         super("Transform");
@@ -32,10 +32,8 @@ public class TransformView extends JFrame implements View{
 
         //Button Panel
         JPanel buttonPanel = new JPanel();
-
         components = new ArrayList<Component>();
 
-        lblRotate = new JLabel("Rotation:");
         lblRotateDir = new JLabel("Direction:");
         lblRotateDeg = new JLabel("Degrees:");
 
@@ -48,7 +46,6 @@ public class TransformView extends JFrame implements View{
         btnApplyR = new Button("ROTATE");
         btnApplyR.setMnemonic(KeyEvent.VK_R);
 
-        lblSize = new JLabel("Image Size:");
         lblSizeWidth = new JLabel("Width:");
         lblSizeHeight = new JLabel("Height:");
 
@@ -57,6 +54,7 @@ public class TransformView extends JFrame implements View{
 
         btnApplyS = new Button("CHANGE SIZE");
         btnApplyS.setMnemonic(KeyEvent.VK_S);
+
         //Layout
         GridBagLayout gridbag = new GridBagLayout();
         buttonPanel.setLayout(gridbag);
@@ -67,11 +65,7 @@ public class TransformView extends JFrame implements View{
         gbc.insets.left = 5;
         gbc.insets.right = 5;
 
-        /*gbc.anchor = GridBagConstraints.CENTER;
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gridbag.setConstraints(lblRotate, gbc);
-        buttonPanel.add(lblRotate,gbc);*/
+
 
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -101,10 +95,6 @@ public class TransformView extends JFrame implements View{
         buttonPanel.add(btnApplyR);
         components.add(btnApplyR);
 
-        /*gbc.gridx = 0;
-        gbc.gridy = 6;
-        gridbag.setConstraints(lblSize, gbc);
-        buttonPanel.add(lblSize);*/
 
         gbc.gridx = 0;
         gbc.gridy = 7;
@@ -115,7 +105,7 @@ public class TransformView extends JFrame implements View{
         gbc.gridy = 8;
         gridbag.setConstraints(txtImageWidth, gbc);
         buttonPanel.add(txtImageWidth);
-        //components.add(txtImageWidth); i guess textfields shudnt be components
+
 
         gbc.gridx = 0;
         gbc.gridy = 9;
@@ -140,7 +130,7 @@ public class TransformView extends JFrame implements View{
 
     @Override
     public void addComponentListener(ActionListener componentListener) {
-        for(com.cs4227.ui.components.Component c: components){
+        for(Component c: components){
             c.addActionListener(componentListener);
         }
     }

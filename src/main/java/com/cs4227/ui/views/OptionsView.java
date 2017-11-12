@@ -10,7 +10,7 @@ import com.cs4227.ui.commands.*;
 import com.cs4227.ui.components.Button;
 import com.cs4227.ui.components.Component;
 
-public class OptionsView extends JFrame implements View{
+public class OptionsView extends JFrame implements ComponentView{
 
     private ArrayList<Component> components;
     private Button btnOpen;
@@ -22,7 +22,7 @@ public class OptionsView extends JFrame implements View{
         super("Main");
 
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setSize(600, 80);
+        this.setSize(620, 80);
         this.setLocation(650, 150);
 
         //Button Panel
@@ -79,7 +79,7 @@ public class OptionsView extends JFrame implements View{
 
     @Override
     public void addComponentListener(ActionListener componentListener) {
-        for(com.cs4227.ui.components.Component c: components){
+        for(Component c: components){
             c.addActionListener(componentListener);
         }
     }
