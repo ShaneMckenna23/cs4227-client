@@ -1,7 +1,7 @@
 package com.cs4227.framework.interceptor;
 
-import com.cs4227.framework.interceptor.state.LoggingDisabledState;
-import com.cs4227.framework.interceptor.state.LoggingEnabledState;
+import com.cs4227.framework.interceptor.state.LoggingDisableState;
+import com.cs4227.framework.interceptor.state.LoggingEnableState;
 import com.cs4227.framework.interceptor.state.StateContext;
 
 import java.awt.image.BufferedImage;
@@ -9,17 +9,19 @@ import java.awt.image.BufferedImage;
 public class FileHandlerManager {
 
     private FileHandlerDispatcherManager dispatcherManager;
-    private LoggingEnabledState loggingEnabledState;
-    private LoggingDisabledState loggingDisabledState;
+    private LoggingEnableState loggingEnableState;
+    private LoggingDisableState loggingDisableState;
     private StateContext loggingContext;
     private FileLoggingInterceptor loggingInterceptor;
+    private FileWriterTarget fileWriterTarget;
+    private FileReaderTarget fileReaderTarget;
 
     public FileHandlerManager() {
         initialize();
     }
 
     public BufferedImage openImage(String directory) {
-        dispatcherManager = new FileHandlerDispatcherManager(new FileReaderTarget());
+        dispatcherManager.setTarget(fileReaderTarget);
         PreFileHandlerContext preRequestContext = createPreFileHandlerContext(directory,
                 Thread.currentThread().getStackTrace()[1].getMethodName());
         PostFileHandlerContext postRequestContext = dispatcherManager.executeFileHandlerRequest(preRequestContext);
@@ -27,7 +29,7 @@ public class FileHandlerManager {
     }
 
     public String saveImage(String directory, BufferedImage image) {
-        dispatcherManager = new FileHandlerDispatcherManager(new FileWriterTarget());
+        dispatcherManager.setTarget(fileWriterTarget);
         PreFileHandlerContext context = createPreFileHandlerContext(directory,
                 Thread.currentThread().getStackTrace()[1].getMethodName());
         context.setImage(image);
@@ -35,35 +37,24 @@ public class FileHandlerManager {
         return postRequestContext.getOutcomeContext().getState().stateMessage();
     }
 
-    public void enableLogging() {
-        if(loggingContext.getState() == loggingDisabledState) {
-            loggingDisabledState.toggle(loggingContext);
-            dispatcherManager.addInterceptor(loggingInterceptor);
-        }
-    }
-
-    public void disableLogging() {
-        if(loggingContext.getState() == loggingEnabledState) {
-            loggingDisabledState.toggle(loggingContext);
-            dispatcherManager.removeInterceptor(loggingInterceptor);
-        }
-    }
-
-    public void setDispatcherManager(FileHandlerDispatcherManager manager) {
-        this.dispatcherManager = manager;
+    public void toggleLogging() {
+        loggingContext.toggle();
     }
 
     private void initialize() {
-        FileHandlerDispatcherManager manager = new FileHandlerDispatcherManager(new FileReaderTarget());
-        this.setDispatcherManager(manager);
+        dispatcherManager = new FileHandlerDispatcherManager();
+        fileReaderTarget = new FileReaderTarget();
+        fileWriterTarget = new FileWriterTarget();
         loggingContext = new StateContext();
         loggingContext.setCreatorClass(FileHandlerManager.class.toString());
-        loggingEnabledState = new LoggingEnabledState();
-        loggingDisabledState = new LoggingDisabledState();
-        //Logging is enabled by default
-        loggingEnabledState.toggle(loggingContext);
         loggingInterceptor = new FileLoggingInterceptor();
-        dispatcherManager.addInterceptor(loggingInterceptor);
+        loggingEnableState = new LoggingEnableState(loggingInterceptor, dispatcherManager);
+        loggingDisableState = new LoggingDisableState(loggingInterceptor, dispatcherManager);
+        loggingEnableState.setDisableState(loggingDisableState);
+        loggingDisableState.setEnableState(loggingEnableState);
+        //Logging is enabled by default
+        loggingContext.setState(loggingEnableState);
+        loggingEnableState.toggle(loggingContext);
     }
 
     private PreFileHandlerContext createPreFileHandlerContext(String directory, String method) {
