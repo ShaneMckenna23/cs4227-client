@@ -5,6 +5,10 @@ public class StateContext {
     private BaseState state;
     private String creatorClass;
 
+    public void toggle() {
+        state.toggle(this);
+    }
+
     public StateContext(){
         state = null;
     }

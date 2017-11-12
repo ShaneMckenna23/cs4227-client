@@ -4,21 +4,24 @@ public class FileHandlerDispatcherManager {
 
     private FileHandlerDispatcher dispatcher;
 
-    public FileHandlerDispatcherManager(BaseFileHandlerTarget target) {
+    public FileHandlerDispatcherManager() {
         dispatcher = new FileHandlerDispatcher();
-        dispatcher.setTarget(target);
     }
 
-    protected void addInterceptor(BaseFileHandlerInterceptor interceptor) {
+    public void addInterceptor(BaseFileHandlerInterceptor interceptor) {
         dispatcher.registerInterceptor(interceptor);
     }
 
-    protected void removeInterceptor(BaseFileHandlerInterceptor interceptor) {
+    public void removeInterceptor(BaseFileHandlerInterceptor interceptor) {
         dispatcher.removeInterceptor(interceptor);
     }
 
     public PostFileHandlerContext executeFileHandlerRequest(PreFileHandlerContext preRequestContext) {
         return dispatcher.executeFileHandlerRequest(preRequestContext);
+    }
+
+    public void setTarget(BaseFileHandlerTarget target) {
+        dispatcher.setTarget(target);
     }
 
 }
