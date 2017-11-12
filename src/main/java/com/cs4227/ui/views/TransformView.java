@@ -144,4 +144,20 @@ public class TransformView extends JFrame implements ComponentView{
             }
         }
     }
+
+    public int getInputWidth() {
+        return Integer.parseInt(txtImageWidth.getText());
+    }
+
+    public int getInputHeight() {
+        return Integer.parseInt(txtImageHeight.getText());
+    }
+
+    public String getRotateDirection(){
+        return cmbRotateDir.getSelectedItem().toString();
+    }
+
+    public String getRotateDegree(){
+        return cmbRotateDeg.getSelectedItem().toString();
+    }
 }

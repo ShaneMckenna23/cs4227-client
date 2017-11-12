@@ -74,6 +74,9 @@ public class EditorController {
 
     private void initializeTransformView(ComponentListener componentListener) {
         this.transformView.addComponentListener(componentListener);
+
+        this.transformView.addCommandToComponent("ROTATE", new RotateCommand(transformView, imageView, imageModel));
+        this.transformView.addCommandToComponent("CHANGE SIZE", new ChangeSizeCommand(transformView, imageView, imageModel));
     }
 
     private void initializeExplorerOpen() {

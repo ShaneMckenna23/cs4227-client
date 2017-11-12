@@ -34,4 +34,18 @@ public class Img4u {
         Filter filter = filterFactory.createFilter(filterType);
         return filter.convert(image);
     }
+
+    public BufferedImage applyRotate(BufferedImage image, String rotateDir, String rotateDeg) {
+        //Filter filter = filterFactory.createFilter(filterType);
+        String result = "\nRotate:\nDirection = " + rotateDir + "\nDegrees = " + rotateDeg;
+        System.out.println(result);
+        return image;//no change to image yet
+    }
+
+    public BufferedImage applySizeChange(BufferedImage image, int w, int h) {
+        //Filter filter = filterFactory.createFilter(filterType);
+        String result = "\nNew Size:\nWidth =  " + w + "\nHeight = " + h;
+        System.out.println(result);
+        return image;//no change to image yet
+    }
 }
