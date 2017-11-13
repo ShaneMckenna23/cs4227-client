@@ -28,4 +28,8 @@ public class StateContext {
     public String getCreatorClass() {
         return creatorClass;
     }
+
+    public String getStateMessage() {
+        return state.stateMessage();
+    }
 }

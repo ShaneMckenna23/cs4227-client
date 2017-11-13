@@ -12,7 +12,7 @@ public class TestFileHandlerManager {
 
     private static final String TEST_IMAGE_DIRECTORY = System.getProperty("user.dir")
             + "/src/test/resources/imageDefault.jpg";
-    private static final String SAVE_SUCCESSFUL = "Success";
+    private static final String SAVE_SUCCESSFUL = "Success.";
 
     private FileHandlerManager manager;
 

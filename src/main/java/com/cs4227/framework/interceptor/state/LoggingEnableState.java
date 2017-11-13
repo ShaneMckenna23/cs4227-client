@@ -4,14 +4,14 @@ import com.cs4227.framework.interceptor.FileHandlerDispatcherManager;
 import com.cs4227.framework.interceptor.FileLoggingInterceptor;
 import org.apache.log4j.Logger;
 
-public class LoggingEnableState implements BaseState {
+public class LoggingEnableState implements BaseDualState {
 
     private static final String ENABLED_MESSAGE = "Logging has been enabled.";
     private static final String ENABLED_LOG_MESSAGE = "Logging has been enabled for class: ";
 
     private FileHandlerDispatcherManager manager;
     private FileLoggingInterceptor interceptor;
-    private LoggingDisableState disableState;
+    private BaseState disableState;
     private Logger logger = Logger.getLogger(LoggingEnableState.class);
 
     public LoggingEnableState(FileLoggingInterceptor interceptor, FileHandlerDispatcherManager manager) {
@@ -25,8 +25,8 @@ public class LoggingEnableState implements BaseState {
         context.setState(disableState);
     }
 
-    public void setDisableState(LoggingDisableState disableState) {
-        this.disableState = disableState;
+    public void setAlternateState(BaseDualState state) {
+        this.disableState = state;
     }
 
     public String stateMessage() {

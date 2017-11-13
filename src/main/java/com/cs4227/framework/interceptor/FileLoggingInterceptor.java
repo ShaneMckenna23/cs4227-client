@@ -18,7 +18,7 @@ public class FileLoggingInterceptor implements BaseFileHandlerInterceptor {
     public void executePostRequest(PostFileHandlerContext context) {
         StringBuilder logInfo = new StringBuilder();
         logInfo.append("Method " + context.getMethod() + " execution outcome: ");
-        logInfo.append(context.getOutcomeContext().getState().stateMessage());
+        logInfo.append(context.getOutcomeContext().getStateMessage());
         logInfo.append(" Time spent: " + context.getOverallTime() / 1000000000.0);
         logger.info(logInfo);
     }

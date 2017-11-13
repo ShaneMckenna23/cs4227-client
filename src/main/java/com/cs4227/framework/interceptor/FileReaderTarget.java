@@ -18,26 +18,31 @@ public class FileReaderTarget implements BaseFileHandlerTarget {
             + "to read the file from directory:  ";
 
     private StateContext outcomeContext;
+    private TargetSuccessState successState;
+    private TargetFailureState failureState;
     private Logger logger = Logger.getLogger(FileReaderTarget.class);
 
     public FileReaderTarget() {
         outcomeContext = new StateContext();
+        successState = new TargetSuccessState();
+        failureState = new TargetFailureState();
+        successState.setAlternateState(failureState);
     }
 
     @Override
     public PostFileHandlerContext execute(PreFileHandlerContext context) {
+        outcomeContext.setState(successState);
         PostFileHandlerContext postRequestContext = createPostRequestContext(context);
         File selectedFile = new File(context.getDirectory());
         try {
             BufferedImage selectedImage = ImageIO.read(selectedFile);
             postRequestContext.setImage(selectedImage);
-            setSuccessState();
         } catch (IOException e) {
-            setFailureState();
+            outcomeContext.toggle();
             postRequestContext.setImage(null);
             logger.error(IO_ERROR + context.getDirectory(), e);
         } catch (Exception e) {
-            setFailureState();
+            outcomeContext.toggle();
             postRequestContext.setImage(null);
             logger.error(UNKNOWN_ERROR + context.getDirectory(), e);
         }
@@ -50,15 +55,5 @@ public class FileReaderTarget implements BaseFileHandlerTarget {
         PostFileHandlerContext postRequestContext = new PostFileHandlerContext();
         postRequestContext.setMethod(context.getMethod());
         return postRequestContext;
-    }
-
-    private void setFailureState() {
-        TargetFailureState state = new TargetFailureState();
-        state.toggle(outcomeContext);
-    }
-
-    private void setSuccessState() {
-        TargetSuccessState state = new TargetSuccessState();
-        state.toggle(outcomeContext);
     }
 }

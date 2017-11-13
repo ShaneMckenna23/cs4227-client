@@ -21,19 +21,19 @@ public class FileHandlerDispatcher {
     }
 
     public PostFileHandlerContext executeFileHandlerRequest(PreFileHandlerContext context) {
-        dispatchFileHandlerInterceptorPreMarshal(context);
+        dispatchFileHandlerInterceptorPreRequest(context);
         PostFileHandlerContext postRequestContext = executeTarget(context);
-        dispatchFileHandlerInterceptorPostMarshal(postRequestContext);
+        dispatchFileHandlerInterceptorPostRequest(postRequestContext);
         return postRequestContext;
     }
 
-    private void dispatchFileHandlerInterceptorPreMarshal (PreFileHandlerContext context) {
+    private void dispatchFileHandlerInterceptorPreRequest(PreFileHandlerContext context) {
         for (int i = 0; i < baseInterceptors.size(); i++) {
             baseInterceptors.get(i).executePreRequest(context);
         }
     }
 
-    private void dispatchFileHandlerInterceptorPostMarshal (PostFileHandlerContext context) {
+    private void dispatchFileHandlerInterceptorPostRequest(PostFileHandlerContext context) {
         for (int i = 0; i < baseInterceptors.size(); i++) {
             baseInterceptors.get(i).executePostRequest(context);
         }

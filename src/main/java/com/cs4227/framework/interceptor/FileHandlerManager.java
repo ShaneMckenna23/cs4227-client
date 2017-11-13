@@ -3,6 +3,7 @@ package com.cs4227.framework.interceptor;
 import com.cs4227.framework.interceptor.state.LoggingDisableState;
 import com.cs4227.framework.interceptor.state.LoggingEnableState;
 import com.cs4227.framework.interceptor.state.StateContext;
+import com.cs4227.framework.strategy.*;
 
 import java.awt.image.BufferedImage;
 
@@ -15,6 +16,9 @@ public class FileHandlerManager {
     private FileLoggingInterceptor loggingInterceptor;
     private FileWriterTarget fileWriterTarget;
     private FileReaderTarget fileReaderTarget;
+    private SaveAsJPG jpgStrategy;
+    private SaveAsPNG pngStragegy;
+    private SaveAsOther otherStrategy;
 
     public FileHandlerManager() {
         initialize();
@@ -33,8 +37,11 @@ public class FileHandlerManager {
         PreFileHandlerContext context = createPreFileHandlerContext(directory,
                 Thread.currentThread().getStackTrace()[1].getMethodName());
         context.setImage(image);
+        StrategyContext strategyContext = new StrategyContext();
+        strategyContext.setSaveStrategy(determineSaveStrategy(directory));
+        context.setStrategyContext(strategyContext);
         PostFileHandlerContext postRequestContext = dispatcherManager.executeFileHandlerRequest(context);
-        return postRequestContext.getOutcomeContext().getState().stateMessage();
+        return postRequestContext.getOutcomeContext().getStateMessage();
     }
 
     public void toggleLogging() {
@@ -45,16 +52,38 @@ public class FileHandlerManager {
         dispatcherManager = new FileHandlerDispatcherManager();
         fileReaderTarget = new FileReaderTarget();
         fileWriterTarget = new FileWriterTarget();
+
+        pngStragegy = new SaveAsPNG();
+        jpgStrategy = new SaveAsJPG();
+        otherStrategy = new SaveAsOther();
+
         loggingContext = new StateContext();
         loggingContext.setCreatorClass(FileHandlerManager.class.toString());
         loggingInterceptor = new FileLoggingInterceptor();
         loggingEnableState = new LoggingEnableState(loggingInterceptor, dispatcherManager);
         loggingDisableState = new LoggingDisableState(loggingInterceptor, dispatcherManager);
-        loggingEnableState.setDisableState(loggingDisableState);
-        loggingDisableState.setEnableState(loggingEnableState);
+        loggingEnableState.setAlternateState(loggingDisableState);
+        loggingDisableState.setAlternateState(loggingEnableState);
         //Logging is enabled by default
         loggingContext.setState(loggingEnableState);
         loggingEnableState.toggle(loggingContext);
+    }
+
+    private SaveAsStrategy determineSaveStrategy(String directory) {
+        String path = directory;
+        SaveAsStrategy strategy = otherStrategy;
+        String[] pathParts = path.split("\\\\");
+        String fileExtension = directory.split("\\.")[1]+"";
+        switch (fileExtension.toLowerCase()) {
+            case "jpg":
+            case "jpeg":
+                strategy = jpgStrategy;
+            break;
+            case "png":
+                strategy = pngStragegy;
+            break;
+        }
+        return strategy;
     }
 
     private PreFileHandlerContext createPreFileHandlerContext(String directory, String method) {
