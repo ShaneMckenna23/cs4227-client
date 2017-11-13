@@ -1,4 +1,4 @@
-package com.cs4227.framework.interceptor.state;
+package com.cs4227.framework.state;
 
 public class StateContext {
 

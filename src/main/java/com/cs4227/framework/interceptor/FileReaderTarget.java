@@ -1,8 +1,8 @@
 package com.cs4227.framework.interceptor;
 
-import com.cs4227.framework.interceptor.state.StateContext;
-import com.cs4227.framework.interceptor.state.TargetFailureState;
-import com.cs4227.framework.interceptor.state.TargetSuccessState;
+import com.cs4227.framework.state.StateContext;
+import com.cs4227.framework.state.TargetFailureState;
+import com.cs4227.framework.state.TargetSuccessState;
 import org.apache.log4j.Logger;
 
 import javax.imageio.ImageIO;

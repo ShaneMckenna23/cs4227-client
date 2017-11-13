@@ -1,4 +1,4 @@
-package com.cs4227.framework.interceptor.state;
+package com.cs4227.framework.state;
 
 import com.cs4227.framework.interceptor.FileHandlerDispatcherManager;
 import com.cs4227.framework.interceptor.FileLoggingInterceptor;

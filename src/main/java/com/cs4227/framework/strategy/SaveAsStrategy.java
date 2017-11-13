@@ -1,6 +1,6 @@
 package com.cs4227.framework.strategy;
 
-import com.cs4227.framework.interceptor.state.StateContext;
+import com.cs4227.framework.state.StateContext;
 
 import java.awt.image.BufferedImage;
 

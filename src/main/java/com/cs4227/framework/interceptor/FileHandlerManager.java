@@ -1,8 +1,8 @@
 package com.cs4227.framework.interceptor;
 
-import com.cs4227.framework.interceptor.state.LoggingDisableState;
-import com.cs4227.framework.interceptor.state.LoggingEnableState;
-import com.cs4227.framework.interceptor.state.StateContext;
+import com.cs4227.framework.state.LoggingDisableState;
+import com.cs4227.framework.state.LoggingEnableState;
+import com.cs4227.framework.state.StateContext;
 import com.cs4227.framework.strategy.*;
 
 import java.awt.image.BufferedImage;
