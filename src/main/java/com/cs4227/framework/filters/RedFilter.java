@@ -3,7 +3,7 @@ package com.cs4227.framework.filters;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class RedFilter implements Filter {
+public class RedFilter implements FilterAPI {
 
     BufferedImage  image;
     int width;

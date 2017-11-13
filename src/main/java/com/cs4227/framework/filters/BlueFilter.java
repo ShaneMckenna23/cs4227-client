@@ -3,7 +3,7 @@ package com.cs4227.framework.filters;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class BlueFilter implements Filter {
+public class BlueFilter implements FilterAPI {
 
     BufferedImage  image;
     int width;

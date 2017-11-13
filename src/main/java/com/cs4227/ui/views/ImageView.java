@@ -54,8 +54,9 @@ public class ImageView extends JFrame {
         MementoControl.setImagePathCount( MementoControl.getImageCount() + 1 );
         MementoControl.setCurrentPathIndex( MementoControl.getCurrentPathIndex() + 1 );
 
-        //This is just a text output for the visitor
         ImageValueProcessor visitorExample = new ImageValueProcessor(image);
+        visitorExample.printImageValue();
+        visitorExample.logImageValue();
 
         changeImage(image);
     }

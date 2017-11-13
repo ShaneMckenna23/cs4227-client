@@ -70,9 +70,7 @@ public class FileHandlerManager {
     }
 
     private SaveAsStrategy determineSaveStrategy(String directory) {
-        String path = directory;
         SaveAsStrategy strategy = otherStrategy;
-        String[] pathParts = path.split("\\\\");
         String fileExtension = directory.split("\\.")[1]+"";
         switch (fileExtension.toLowerCase()) {
             case "jpg":

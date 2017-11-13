@@ -1,5 +1,7 @@
 package com.cs4227.framework.visitor;
 
+import org.apache.log4j.Logger;
+
 import java.awt.image.BufferedImage;
 
 public class ImageValueProcessor {
@@ -9,9 +11,11 @@ public class ImageValueProcessor {
     private GreenImage greenImage;
     private BlueImage blueImage;
     private ImageVisitor imageVisitor;
+    private Logger logger;
 
     public ImageValueProcessor(BufferedImage image){
 
+        logger = Logger.getLogger(ImageValueProcessor.class);
         imageVisitor = new ImageVisitor();
 
         averageImage = new AverageImage(image);
@@ -19,12 +23,23 @@ public class ImageValueProcessor {
         greenImage = new GreenImage(image);
         blueImage = new BlueImage(image);
 
-        // Printing to the console for now. Feel free to remove this if you are putting it on the UI. -Will
-        System.out.println("Blue: " + blueImage.accept(imageVisitor));
-        System.out.println("Green: " + greenImage.accept(imageVisitor));
-        System.out.println("Red: " + redImage.accept(imageVisitor));
-        System.out.println("Average: " + averageImage.accept(imageVisitor));
+    }
 
+    public void printImageValue() {
+        System.out.println(imageValueToString());
+    }
+
+    public void logImageValue() {
+        logger.info(imageValueToString());
+    }
+
+    public String imageValueToString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Blue: " + blueImage.accept(imageVisitor));
+        builder.append("\nGreen: " + greenImage.accept(imageVisitor));
+        builder.append("\nRed: " + redImage.accept(imageVisitor));
+        builder.append("\nAverage: " + averageImage.accept(imageVisitor));
+        return builder.toString();
     }
 
     public double getBlue(){

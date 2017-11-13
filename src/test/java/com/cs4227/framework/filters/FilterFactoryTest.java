@@ -15,8 +15,26 @@ public class FilterFactoryTest {
     }
 
     @Test
-    public void createMonochtromeFilter(){
+    public void createMonochromeFilter(){
         Filter monochromeFilter = filterFactory.createFilter("Monochrome");
-        assertThat(monochromeFilter, instanceOf(Monochrome.class));
+        assertThat(monochromeFilter.filterAPI, instanceOf(Monochrome.class));
+    }
+
+    @Test
+    public void createRedFilter(){
+        Filter redFilter = filterFactory.createFilter("Monochrome");
+        assertThat(redFilter.filterAPI, instanceOf(RedFilter.class));
+    }
+
+    @Test
+    public void createBlueFilter(){
+        Filter blueFilter = filterFactory.createFilter("Monochrome");
+        assertThat(blueFilter.filterAPI, instanceOf(BlueFilter.class));
+    }
+
+    @Test
+    public void createGreenFilter(){
+        Filter greenFilter = filterFactory.createFilter("Monochrome");
+        assertThat(greenFilter.filterAPI, instanceOf(GreenFilter.class));
     }
 }

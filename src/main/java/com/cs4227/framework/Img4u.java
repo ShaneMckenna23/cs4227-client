@@ -1,9 +1,9 @@
 package com.cs4227.framework;
 
 import com.cs4227.framework.filters.Filter;
+import com.cs4227.framework.filters.FilterAPI;
 import com.cs4227.framework.filters.FilterFactory;
 import com.cs4227.framework.interceptor.FileHandlerManager;
-import com.cs4227.framework.interceptor.FileWriterTarget;
 
 import java.awt.image.BufferedImage;
 
@@ -37,14 +37,14 @@ public class Img4u {
     }
 
     public BufferedImage applyRotate(BufferedImage image, String rotateDir, String rotateDeg) {
-        //Filter filter = filterFactory.createFilter(filterType);
+        //FilterAPI filter = filterFactory.createFilter(filterType);
         String result = "\nRotate:\nDirection = " + rotateDir + "\nDegrees = " + rotateDeg;
         System.out.println(result);
         return image;//no change to image yet
     }
 
     public BufferedImage applySizeChange(BufferedImage image, int w, int h) {
-        //Filter filter = filterFactory.createFilter(filterType);
+        //FilterAPI filter = filterFactory.createFilter(filterType);
         String result = "\nNew Size:\nWidth =  " + w + "\nHeight = " + h;
         System.out.println(result);
         return image;//no change to image yet
