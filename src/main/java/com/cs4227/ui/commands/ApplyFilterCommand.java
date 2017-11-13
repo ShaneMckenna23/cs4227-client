@@ -19,7 +19,7 @@ public class ApplyFilterCommand implements Command {
     @Override
     public void execute() {
         imageModel.ApplyFilter(adjustmentsView.getFilterType());
-        imageView.setImage(imageModel.getImage());
+        imageModel.changeImage(imageView, imageModel.getImage());
     }
 
     @Override

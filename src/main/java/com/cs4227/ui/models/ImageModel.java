@@ -1,7 +1,10 @@
 package com.cs4227.ui.models;
 
 import com.cs4227.framework.Img4u;
+import com.cs4227.framework.memento.MementoControl;
+import com.cs4227.framework.visitor.ImageValueProcessor;
 import com.cs4227.ui.components.FileChooser;
+import com.cs4227.ui.views.ImageView;
 
 import java.awt.image.BufferedImage;
 
@@ -43,6 +46,21 @@ public class ImageModel {
 
     public void ApplyRotate(String rotateDir, String RotaateDeg) {
         this.image = img4u.applyRotate(image, rotateDir, RotaateDeg);
+    }
+
+    public void changeImage(ImageView imageView, BufferedImage image){
+
+        MementoControl.originator.set( image );
+        MementoControl.caretaker.addMemento( MementoControl.originator.storeInMemento() );
+        MementoControl.setImagePathCount( MementoControl.getImageCount() + 1 );
+        MementoControl.setCurrentPathIndex( MementoControl.getCurrentPathIndex() + 1 );
+
+        ImageValueProcessor visitorExample = new ImageValueProcessor(image);
+        visitorExample.printImageValue();
+        visitorExample.logImageValue();
+
+        imageView.setImage(image);
+
     }
 
     public void ApplySizeChange(int w, int h) {

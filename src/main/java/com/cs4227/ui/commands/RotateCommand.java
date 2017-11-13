@@ -19,7 +19,7 @@ public class RotateCommand implements Command {
     @Override
     public void execute() {
         imageModel.ApplyRotate(transformView.getRotateDirection(), transformView.getRotateDegree());
-        imageView.setImage(imageModel.getImage());
+        imageModel.changeImage(imageView, imageModel.getImage());
     }
 
     @Override

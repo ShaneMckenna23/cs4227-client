@@ -25,7 +25,7 @@ public class UndoCommand implements Command {
 
             BufferedImage imagePath = MementoControl.originator.restoreFromMemento( MementoControl.caretaker.getMemento(currentImage) );
             try {
-                imageView.changeImage(imagePath);
+                imageView.setImage(imagePath);
             } catch (Exception e) {
                 e.printStackTrace();
             }

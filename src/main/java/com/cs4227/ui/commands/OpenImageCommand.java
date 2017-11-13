@@ -22,7 +22,7 @@ public class OpenImageCommand implements Command {
     @Override
     public void execute() {
         imageModel.readImage(explorerView.getFileChooser());
-        imageView.setImage(imageModel.getImage());
+        imageModel.changeImage(imageView, imageModel.getImage());
         explorerModel.close();
         explorerView.setVisible(explorerModel.getIsExplorerOpen());
     }

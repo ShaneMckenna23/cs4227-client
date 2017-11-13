@@ -48,23 +48,8 @@ public class ImageView extends JFrame {
     }
 
     public void setImage(BufferedImage image){
-
-        MementoControl.originator.set( image );
-        MementoControl.caretaker.addMemento( MementoControl.originator.storeInMemento() );
-        MementoControl.setImagePathCount( MementoControl.getImageCount() + 1 );
-        MementoControl.setCurrentPathIndex( MementoControl.getCurrentPathIndex() + 1 );
-
-        ImageValueProcessor visitorExample = new ImageValueProcessor(image);
-        visitorExample.printImageValue();
-        visitorExample.logImageValue();
-
-        changeImage(image);
-    }
-
-    public void changeImage(BufferedImage image){
-
-        // I'll need this method for the memento
         selectedImage = image;
         imageLabel.setIcon(new ImageIcon(selectedImage));
     }
+
 }

@@ -19,7 +19,7 @@ public class ChangeSizeCommand implements Command {
     @Override
     public void execute() {
         imageModel.ApplySizeChange(transformView.getInputWidth(), transformView.getInputHeight());
-        imageView.setImage(imageModel.getImage());
+        imageModel.changeImage(imageView, imageModel.getImage());
     }
 
     @Override

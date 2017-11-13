@@ -24,7 +24,7 @@ public class RedoCommand implements Command {
 
             BufferedImage imagePath = MementoControl.originator.restoreFromMemento(MementoControl.caretaker.getMemento(currentIndex));
             try {
-                imageView.changeImage(imagePath);
+                imageView.setImage(imagePath);
             } catch (Exception e) {
                 e.printStackTrace();
             }

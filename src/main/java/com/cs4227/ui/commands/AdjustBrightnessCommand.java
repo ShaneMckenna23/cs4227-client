@@ -19,7 +19,7 @@ public class AdjustBrightnessCommand implements Command {
     public void execute() {
         int brightnessValue = adjustmentsView.getBrightnessValue();
         imageModel.adjustImageBrightness(brightnessValue);
-        imageView.setImage(imageModel.getImage());
+        imageModel.changeImage(imageView, imageModel.getImage());
     }
 
     @Override
