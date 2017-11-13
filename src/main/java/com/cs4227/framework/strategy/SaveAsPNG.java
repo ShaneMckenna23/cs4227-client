@@ -5,12 +5,13 @@ import org.apache.log4j.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.filechooser.FileFilter;
-import javax.swing.plaf.nimbus.State;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 public class SaveAsPNG extends FileFilter implements SaveAsStrategy {
+
+    Logger logger = Logger.getLogger(SaveAsPNG.class);
 
     private static final String UNKNOWN_ERROR = "An unknown error occurred when attempting"
             + "to overwrite the file as PNG from directory: ";
@@ -19,19 +20,15 @@ public class SaveAsPNG extends FileFilter implements SaveAsStrategy {
     private static final String fileExtension = "png";
     private static final String description = "*.png,*.PNG";
 
-    Logger logger = Logger.getLogger(SaveAsPNG.class);
-
-
-    public boolean accept(File f)
-    {
-        if (f.isDirectory())
+    public boolean accept(File file) {
+        if (file.isDirectory())
         {
             return false;
         }
 
-        String s = f.getName();
+        String name = file.getName();
 
-        return s.endsWith(".png")||s.endsWith(".PNG");
+        return name.endsWith(".png")||name.endsWith(".PNG");
     }
 
     public String getDescription()

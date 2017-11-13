@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class FileWriterTarget implements BaseFileHandlerTarget {
-
+    
     private static final String UNKNOWN_ERROR = "An unknown error occurred when attempting"
             + "to overwrite the file from directory: ";
     private static final String IO_ERROR = "An I/O-related error occurred when attempting"
