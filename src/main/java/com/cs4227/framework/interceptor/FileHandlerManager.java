@@ -44,27 +44,8 @@ public class FileHandlerManager {
         return postRequestContext.getOutcomeContext().getStateMessage();
     }
 
-<<<<<<< HEAD
-    public void enableLogging() {
-        if(loggingContext.getState() == loggingDisabledState) {
-            loggingDisabledState.toggle(loggingContext);
-            dispatcherManager.addInterceptor(loggingInterceptor);
-        }
-    }
-
-    public void disableLogging() {
-        if(loggingContext.getState() == loggingEnabledState) {
-            loggingDisabledState.toggle(loggingContext);
-            dispatcherManager.removeInterceptor(loggingInterceptor);
-        }
-    }
-
-    public void setDispatcherManager(FileHandlerDispatcherManager manager) {
-        this.dispatcherManager = manager;
-=======
     public void toggleLogging() {
         loggingContext.toggle();
->>>>>>> fffffef610e279ec967599803a8a9f96c12bebb3
     }
 
     private void initialize() {
