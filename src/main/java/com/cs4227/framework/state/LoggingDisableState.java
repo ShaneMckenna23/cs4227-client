@@ -1,7 +1,7 @@
 package com.cs4227.framework.state;
 
-import com.cs4227.framework.interceptor.FileHandlerDispatcherManager;
-import com.cs4227.framework.interceptor.FileLoggingInterceptor;
+import com.cs4227.framework.filehandler.FileHandlerDispatcherManager;
+import com.cs4227.framework.filehandler.FileLoggingInterceptor;
 import org.apache.log4j.Logger;
 
 public class LoggingDisableState implements BaseDualState {

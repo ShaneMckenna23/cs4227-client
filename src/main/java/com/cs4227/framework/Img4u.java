@@ -1,9 +1,8 @@
 package com.cs4227.framework;
 
 import com.cs4227.framework.filters.Filter;
-import com.cs4227.framework.filters.FilterAPI;
 import com.cs4227.framework.filters.FilterFactory;
-import com.cs4227.framework.interceptor.FileHandlerManager;
+import com.cs4227.framework.filehandler.FileHandlerManager;
 
 import java.awt.image.BufferedImage;
 

@@ -1,6 +1,5 @@
-package com.cs4227.framework.interceptor;
+package com.cs4227.framework.filehandler;
 
-import com.cs4227.framework.strategy.SaveAsStrategy;
 import com.cs4227.framework.strategy.StrategyContext;
 
 import java.awt.image.BufferedImage;

@@ -1,4 +1,4 @@
-package com.cs4227.framework.interceptor;
+package com.cs4227.framework.filehandler;
 
 public interface BaseFileHandlerTarget {
 

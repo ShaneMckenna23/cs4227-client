@@ -1,5 +1,8 @@
 package com.cs4227.framework.interceptor;
 
+import com.cs4227.framework.filehandler.FileWriterTarget;
+import com.cs4227.framework.filehandler.PostFileHandlerContext;
+import com.cs4227.framework.filehandler.PreFileHandlerContext;
 import com.cs4227.framework.strategy.SaveAsJPG;
 import com.cs4227.framework.strategy.SaveAsOther;
 import com.cs4227.framework.strategy.SaveAsPNG;

@@ -1,5 +1,7 @@
 package com.cs4227.framework.interceptor;
 
+import com.cs4227.framework.filehandler.PreFileHandlerContext;
+
 public class PreFileHandlerContextCreator {
 
     public PreFileHandlerContext createPreFileHandlerContext(String directory) {
