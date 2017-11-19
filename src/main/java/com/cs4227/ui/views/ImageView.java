@@ -1,8 +1,5 @@
 package com.cs4227.ui.views;
 
-import com.cs4227.framework.memento.MementoControl;
-import com.cs4227.framework.visitor.ImageValueProcessor;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;

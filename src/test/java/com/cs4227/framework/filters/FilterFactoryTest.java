@@ -22,19 +22,19 @@ public class FilterFactoryTest {
 
     @Test
     public void createRedFilter(){
-        Filter redFilter = filterFactory.createFilter("Monochrome");
+        Filter redFilter = filterFactory.createFilter("Red");
         assertThat(redFilter.filterAPI, instanceOf(RedFilter.class));
     }
 
     @Test
     public void createBlueFilter(){
-        Filter blueFilter = filterFactory.createFilter("Monochrome");
+        Filter blueFilter = filterFactory.createFilter("Blue");
         assertThat(blueFilter.filterAPI, instanceOf(BlueFilter.class));
     }
 
     @Test
     public void createGreenFilter(){
-        Filter greenFilter = filterFactory.createFilter("Monochrome");
+        Filter greenFilter = filterFactory.createFilter("Green");
         assertThat(greenFilter.filterAPI, instanceOf(GreenFilter.class));
     }
 }
