@@ -7,10 +7,13 @@ import com.cs4227.ui.components.FileChooser;
 import com.cs4227.ui.views.ImageView;
 
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
 
 public class ImageModel {
 
     private BufferedImage image;
+    private BufferedImage orginalImage;
     private String alertMessage;
     private Img4u img4u;
 
@@ -25,7 +28,8 @@ public class ImageModel {
 
     public void readImage(FileChooser fileChooser) {
         String path = fileChooser.getSelectedFile().getPath();
-        this.image = img4u.openImage(path);
+        this.orginalImage = img4u.openImage(path);
+        this.image = deepCopy(orginalImage);
     }
 
     public void saveImage(String path) {
@@ -33,11 +37,11 @@ public class ImageModel {
     }
 
     public void adjustImageBrightness(int brightnessValue) {
-        this.image = img4u.adjustImageBrightness(image, brightnessValue);
+        this.image = img4u.adjustImageBrightness(deepCopy(orginalImage), brightnessValue);
     }
 
     public void ApplyFilter(String filterType) {
-        this.image = img4u.applyFilter(image, filterType);
+        this.image = img4u.applyFilter(deepCopy(orginalImage), filterType);
     }
 
     public String getAlertMessage() {
@@ -65,5 +69,12 @@ public class ImageModel {
 
     public void ApplySizeChange(int w, int h) {
         this.image = img4u.applySizeChange(image, w, h);
+    }
+
+    public BufferedImage deepCopy(BufferedImage bi) {
+        ColorModel cm = bi.getColorModel();
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = bi.copyData(null);
+        return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
     }
 }

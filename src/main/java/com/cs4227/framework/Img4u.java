@@ -1,5 +1,6 @@
 package com.cs4227.framework;
 
+import com.cs4227.framework.abstractfactory.FactoryRotate;
 import com.cs4227.framework.filters.Filter;
 import com.cs4227.framework.filters.FilterFactory;
 import com.cs4227.framework.filehandler.FileHandlerManager;
@@ -10,10 +11,13 @@ public class Img4u {
 
     private FileHandlerManager fileHandlerManager;
     private FilterFactory filterFactory;
+    private FactoryRotate factoryRotate;
+    private BrightnessEnhancer brightnessEnhancer;
 
     public Img4u(){
         this.fileHandlerManager = new FileHandlerManager();
         this.filterFactory = new FilterFactory();
+        this.brightnessEnhancer = new BrightnessEnhancer();
     }
 
     public BufferedImage openImage(String directory){
@@ -26,8 +30,7 @@ public class Img4u {
 
     public BufferedImage adjustImageBrightness(BufferedImage image, int brightnessValue) {
         System.out.print("Brightness value: " + brightnessValue);
-        //todo
-        return image;
+        return brightnessEnhancer.convert(image, brightnessValue);
     }
 
     public BufferedImage applyFilter(BufferedImage image, String filterType) {
@@ -36,7 +39,8 @@ public class Img4u {
     }
 
     public BufferedImage applyRotate(BufferedImage image, String rotateDir, String rotateDeg) {
-        //FilterAPI filter = filterFactory.createFilter(filterType);
+        FactoryRotate factoryRotateDir = factoryRotate.getRotateFactory(rotateDir).getRotate90();
+
         String result = "\nRotate:\nDirection = " + rotateDir + "\nDegrees = " + rotateDeg;
         System.out.println(result);
         return image;//no change to image yet
