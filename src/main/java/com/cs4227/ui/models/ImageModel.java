@@ -48,8 +48,9 @@ public class ImageModel {
         return alertMessage;
     }
 
-    public void ApplyRotate(String rotateDir, String RotaateDeg) {
-        this.image = img4u.applyRotate(image, rotateDir, RotaateDeg);
+    public void ApplyRotate(String rotateDir, String rotateDeg) {
+        rotateDeg = rotateDeg.replaceAll("\\D+","");
+        this.image = img4u.applyRotate(image, rotateDir, rotateDeg);
     }
 
     public void changeImage(ImageView imageView, BufferedImage image){

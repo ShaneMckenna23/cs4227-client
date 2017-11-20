@@ -1,11 +1,14 @@
 package com.cs4227.framework.abstractfactory;
 
-class FactoryRotateAntiClockwise extends FactoryRotate {
+public class FactoryRotateAntiClockwise extends AbstractRotateFactory {
 
-    public Interface90 getRotate90() {
-        return new RotateAntiClockwise90("Anti-CW-90");
+    @Override
+    public Rotate45 createRotater45() {
+        return new RotateAntiClockwise45();
     }
-    public Interface180 getRotate180() {
-        return new Rotate180("Anti-CW-180");
+
+    @Override
+    public Rotate90 createRotater90() {
+        return new RotateAntiClockwise90();
     }
-} // End of class
+}

@@ -41,7 +41,7 @@ public class TransformView extends JFrame implements ComponentView{
         String tempDir[] = {"Clockwise", "Anti-Clockwise"};
         cmbRotateDir = new ComboBox(tempDir, "Direction");
 
-        String tempDeg[] = {"90 Degrees", "180 Degrees"};
+        String tempDeg[] = {"90 Degrees", "45 Degrees"};
         cmbRotateDeg = new ComboBox(tempDeg, "Degree");
 
         btnApplyR = new Button("ROTATE");

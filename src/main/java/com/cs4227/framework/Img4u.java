@@ -1,6 +1,9 @@
 package com.cs4227.framework;
 
-import com.cs4227.framework.abstractfactory.FactoryRotate;
+import com.cs4227.framework.abstractfactory.FactoryProducer;
+import com.cs4227.framework.abstractfactory.Rotate90;
+import com.cs4227.framework.abstractfactory.Rotate45;
+import com.cs4227.framework.abstractfactory.AbstractRotateFactory;
 import com.cs4227.framework.filters.Filter;
 import com.cs4227.framework.filters.FilterFactory;
 import com.cs4227.framework.filehandler.FileHandlerManager;
@@ -11,7 +14,6 @@ public class Img4u {
 
     private FileHandlerManager fileHandlerManager;
     private FilterFactory filterFactory;
-    private FactoryRotate factoryRotate;
     private BrightnessEnhancer brightnessEnhancer;
 
     public Img4u(){
@@ -39,11 +41,14 @@ public class Img4u {
     }
 
     public BufferedImage applyRotate(BufferedImage image, String rotateDir, String rotateDeg) {
-        FactoryRotate factoryRotateDir = factoryRotate.getRotateFactory(rotateDir).getRotate90();
-
-        String result = "\nRotate:\nDirection = " + rotateDir + "\nDegrees = " + rotateDeg;
-        System.out.println(result);
-        return image;//no change to image yet
+        AbstractRotateFactory rotateFactory = FactoryProducer.getFactory(rotateDir);
+        if(rotateDeg == "45"){
+            Rotate45 imageRotate = rotateFactory.createRotater45();
+            return imageRotate.rotate(image);
+        }else{
+            Rotate90 imageRotate = rotateFactory.createRotater90();
+            return imageRotate.rotate(image);
+        }
     }
 
     public BufferedImage applySizeChange(BufferedImage image, int w, int h) {
