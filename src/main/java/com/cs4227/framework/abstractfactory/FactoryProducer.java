@@ -6,7 +6,7 @@ public class FactoryProducer {
         if(choice.equalsIgnoreCase("Clockwise")){
             return new FactoryRotateClockwise();
 
-        }else if(choice.equalsIgnoreCase("Anticlockwise")){
+        }else if(choice.equalsIgnoreCase("Anti-Clockwise")){
             return new FactoryRotateAntiClockwise();
         }
 

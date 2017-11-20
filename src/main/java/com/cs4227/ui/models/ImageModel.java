@@ -37,7 +37,7 @@ public class ImageModel {
     }
 
     public void adjustImageBrightness(int brightnessValue) {
-        this.image = img4u.adjustImageBrightness(deepCopy(orginalImage), brightnessValue);
+        this.image = img4u.adjustImageBrightness(deepCopy(image), brightnessValue);
     }
 
     public void ApplyFilter(String filterType) {

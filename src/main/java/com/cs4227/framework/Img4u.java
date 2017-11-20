@@ -42,7 +42,7 @@ public class Img4u {
 
     public BufferedImage applyRotate(BufferedImage image, String rotateDir, String rotateDeg) {
         AbstractRotateFactory rotateFactory = FactoryProducer.getFactory(rotateDir);
-        if(rotateDeg == "45"){
+        if(rotateDeg.equals("45")){
             Rotate45 imageRotate = rotateFactory.createRotater45();
             return imageRotate.rotate(image);
         }else{
