@@ -80,18 +80,7 @@ public class OptionsView extends JFrame implements ComponentView{
     }
 
     @Override
-    public void addComponentListener(EventListener componentListener) {
-        for(Component c: components){
-            c.addEventListener(componentListener);
-        }
-    }
-
-    @Override
-    public void addCommandToComponent(String name, Command command) {
-        for(Component c: components){
-            if(c.getName().equals(name)){
-                c.setCommand(command);
-            }
-        }
+    public ArrayList<Component> getAllComponents(){
+        return components;
     }
 }

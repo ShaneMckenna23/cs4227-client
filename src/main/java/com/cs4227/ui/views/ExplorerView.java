@@ -29,14 +29,6 @@ public class ExplorerView extends JFrame {
         this.pack();
     }
 
-    public void addApproveCommand(Command command) {
-        fileChooser.setApproveCommandCommand(command);
-    }
-
-    public void addCancelCommand(Command command) {
-        fileChooser.setCancelCommand(command);
-    }
-
     public FileChooser getFileChooser() {
         return fileChooser;
     }

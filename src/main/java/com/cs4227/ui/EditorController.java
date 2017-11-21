@@ -2,6 +2,7 @@ package com.cs4227.ui;
 
 import com.cs4227.ui.commands.*;
 import com.cs4227.ui.components.Component;
+import com.cs4227.ui.components.FileChooser;
 import com.cs4227.ui.models.ExplorerSaveModel;
 import com.cs4227.ui.models.ImageModel;
 import com.cs4227.ui.models.ExplorerOpenModel;
@@ -11,6 +12,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.EventListener;
 
 
 public class EditorController {
@@ -21,7 +24,6 @@ public class EditorController {
     private TransformView transformView;
     private ExplorerView explorerOpen;
     private ExplorerView explorerSave;
-    private ExplorerView explorerSaveStrategy;
 
     private ImageModel imageModel;
     private ExplorerOpenModel explorerOpenModel;
@@ -37,7 +39,6 @@ public class EditorController {
 
         this.explorerOpen = new ExplorerView("OPEN");
         this.explorerSave = new ExplorerView("SAVE");
-        this.explorerSaveStrategy = new ExplorerView("SAVEST");
 
         //Models
         imageModel = new ImageModel(this.imageView.getImage());
@@ -60,38 +61,66 @@ public class EditorController {
     }
 
     private void initializeOptionsView(ComponentListener componentListener) {
-        this.optionsView.addComponentListener(componentListener);
+        ArrayList<Component> components = this.optionsView.getAllComponents();
+        addComponentListener(components, componentListener);
 
-        this.optionsView.addCommandToComponent("OPEN", new OpenExplorerCommand(explorerOpenModel, explorerOpen));
-        this.optionsView.addCommandToComponent("SAVE", new OpenExplorerCommand(explorerSaveModel, explorerSave));
-        this.optionsView.addCommandToComponent("UNDO", new UndoCommand(imageView));
-        this.optionsView.addCommandToComponent("REDO", new RedoCommand(imageView));
+        addCommandToComponent(components, "OPEN", new OpenExplorerCommand(explorerOpenModel,   explorerOpen));
+        addCommandToComponent(components,"OPEN", new OpenExplorerCommand(explorerOpenModel, explorerOpen));
+        addCommandToComponent(components,"SAVE", new OpenExplorerCommand(explorerSaveModel, explorerSave));
+        addCommandToComponent(components,"UNDO", new UndoCommand(imageView));
+        addCommandToComponent(components,"REDO", new RedoCommand(imageView));
     }
 
     private void initializeAdjustmentsView(ComponentListener componentListener) {
-        this.adjustmentsView.addComponentListener(componentListener);
+        ArrayList<Component> components = this.adjustmentsView.getAllComponents();
+        addComponentListener(components, componentListener);
 
-        this.adjustmentsView.addCommandToComponent("sldBrightness", new AdjustBrightnessCommand(adjustmentsView,imageView,imageModel));
-        this.adjustmentsView.addCommandToComponent("APPLY", new ApplyFilterCommand(adjustmentsView, imageView, imageModel));
+        addCommandToComponent(components,"sldBrightness", new AdjustBrightnessCommand(adjustmentsView,imageView,imageModel));
+        addCommandToComponent(components,"APPLY", new ApplyFilterCommand(adjustmentsView, imageView, imageModel));
     }
 
     private void initializeTransformView(ComponentListener componentListener) {
-        this.transformView.addComponentListener(componentListener);
+        ArrayList<Component> components = this.transformView.getAllComponents();
+        addComponentListener(components, componentListener);
 
-        this.transformView.addCommandToComponent("ROTATE", new RotateCommand(transformView, imageView, imageModel));
-        this.transformView.addCommandToComponent("CHANGE SIZE", new ChangeSizeCommand(transformView, imageView, imageModel));
+        addCommandToComponent(components,"ROTATE", new RotateCommand(transformView, imageView, imageModel));
+        addCommandToComponent(components,"CHANGE SIZE", new ChangeSizeCommand(transformView, imageView, imageModel));
     }
 
     private void initializeExplorerOpen() {
-        this.explorerOpen.addApproveCommand(new OpenImageCommand(imageModel, imageView, explorerOpen, explorerOpenModel));
-        this.explorerOpen.addCancelCommand(new CloseExplorerCommand(explorerOpenModel, explorerOpen));
+        FileChooser fileChooser = this.explorerOpen.getFileChooser();
+
+        addApproveCommand(fileChooser,new OpenImageCommand(imageModel, imageView, explorerOpen, explorerOpenModel));
+        addCancelCommand(fileChooser, new CloseExplorerCommand(explorerOpenModel, explorerOpen));
     }
 
     private void initializeExplorerClose() {
-        this.explorerSave.addApproveCommand(new SaveImageCommand(explorerSave, imageModel, explorerSaveModel));
-        this.explorerSave.addCancelCommand(new CloseExplorerCommand(explorerOpenModel, explorerSave));
+        FileChooser fileChooser = this.explorerSave.getFileChooser();
 
-        this.explorerSaveStrategy.addCancelCommand(new CloseExplorerCommand(explorerOpenModel, explorerSaveStrategy));
+        addApproveCommand(fileChooser, new SaveImageCommand(explorerSave, imageModel, explorerSaveModel));
+        addCancelCommand(fileChooser, new CloseExplorerCommand(explorerOpenModel, explorerSave));
+    }
+
+    public void addComponentListener(ArrayList<Component> components, EventListener componentListener){
+        for(Component c: components){
+            c.addEventListener(componentListener);
+        }
+    }
+
+    public void addCommandToComponent(ArrayList<Component> components, String name,Command command){
+        for(Component c: components){
+            if(c.getName().equals(name)){
+                c.setCommand(command);
+            }
+        }
+    }
+
+    public void addApproveCommand(FileChooser fileChooser, Command command) {
+        fileChooser.setApproveCommandCommand(command);
+    }
+
+    public void addCancelCommand(FileChooser fileChooser, Command command) {
+        fileChooser.setCancelCommand(command);
     }
 
     class ComponentListener implements ActionListener, ChangeListener {
