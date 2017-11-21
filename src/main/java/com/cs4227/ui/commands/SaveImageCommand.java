@@ -27,9 +27,4 @@ public class SaveImageCommand implements Command {
         explorerView.setVisible(explorerModel.getIsExplorerOpen());
         JOptionPane.showMessageDialog (null, imageModel.getAlertMessage(), "Alert", JOptionPane.INFORMATION_MESSAGE);
     }
-
-    @Override
-    public void undo() {
-
-    }
 }

@@ -74,14 +74,6 @@ public class OptionsView extends JFrame implements ComponentView{
         buttonPanel.add(btnRedo);
         components.add(btnRedo);
 
-        btnSaveSt = new Button("SAVEST");
-        btnSaveSt.setMnemonic(KeyEvent.VK_S);
-        gbc.gridx = 5;
-        gbc.gridy = 0;
-        gridbag.setConstraints(btnSaveSt, gbc);
-        buttonPanel.add(btnSaveSt);
-        components.add(btnSaveSt);
-
         //Add the buttons and the log to the frame
         Container contentPane = getContentPane();
         contentPane.add(buttonPanel, BorderLayout.NORTH);

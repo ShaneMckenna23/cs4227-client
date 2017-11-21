@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class SaveAsPNG extends FileFilter implements SaveAsStrategy {
+public class SaveAsPNG implements SaveAsStrategy {
 
     Logger logger = Logger.getLogger(SaveAsPNG.class);
 
@@ -19,22 +19,6 @@ public class SaveAsPNG extends FileFilter implements SaveAsStrategy {
             + "to overwrite the file as PNG from directory:  ";
     private static final String fileExtension = "png";
     private static final String description = "*.png,*.PNG";
-
-    public boolean accept(File file) {
-        if (file.isDirectory())
-        {
-            return false;
-        }
-
-        String name = file.getName();
-
-        return name.endsWith(".png")||name.endsWith(".PNG");
-    }
-
-    public String getDescription()
-    {
-        return description;
-    }
 
     public void save(String destination, BufferedImage image, StateContext context) {
         try {

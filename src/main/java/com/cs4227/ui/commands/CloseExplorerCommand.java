@@ -18,9 +18,4 @@ public class CloseExplorerCommand implements Command {
         explorerOpenModel.close();
         explorerView.setVisible(explorerOpenModel.getIsExplorerOpen());
     }
-
-    @Override
-    public void undo() {
-
-    }
 }

@@ -29,12 +29,7 @@ public class UndoCommand implements Command {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
             System.out.println("Previous Pressed.");
         }
-    }
-
-    public void undo() {
-
     }
 }

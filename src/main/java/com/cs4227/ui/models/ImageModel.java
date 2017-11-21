@@ -53,7 +53,7 @@ public class ImageModel {
         this.image = img4u.applyRotate(image, rotateDir, rotateDeg);
     }
 
-    public void changeImage(ImageView imageView, BufferedImage image){
+    public void changeImage(BufferedImage image){
 
         MementoControl.originator.set( image );
         MementoControl.caretaker.addMemento( MementoControl.originator.storeInMemento() );
@@ -64,8 +64,7 @@ public class ImageModel {
         visitorExample.printImageValue();
         visitorExample.logImageValue();
 
-        imageView.setImage(image);
-
+        this.image = image;
     }
 
     public void ApplySizeChange(int w, int h) {

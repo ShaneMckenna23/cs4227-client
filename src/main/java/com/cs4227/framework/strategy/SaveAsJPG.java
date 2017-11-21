@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class SaveAsJPG extends FileFilter implements SaveAsStrategy  {
+public class SaveAsJPG implements SaveAsStrategy  {
 
     Logger logger = Logger.getLogger(SaveAsJPG.class);
 
@@ -19,22 +19,6 @@ public class SaveAsJPG extends FileFilter implements SaveAsStrategy  {
             + "to overwrite the file as JPG from directory:  ";
     private static final String fileExtension = "jpg";
     private static final String description = "*.jpg,*.JPG,*.jpeg,*.JPEG";
-
-    public boolean accept(File file) {
-        if (file.isDirectory())
-        {
-            return false;
-        }
-
-        String name = file.getName();
-
-        return name.endsWith(".jpg")||name.endsWith(".JPG")||name.endsWith(".jpeg")||name.endsWith(".JPEG");
-    }
-
-    public String getDescription()
-    {
-        return description;
-    }
 
     public void save(String destination, BufferedImage image, StateContext context) {
         try {

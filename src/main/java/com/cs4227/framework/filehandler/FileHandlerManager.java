@@ -20,8 +20,7 @@ public class FileHandlerManager {
     private SaveAsPNG pngStragegy;
     private SaveAsOther otherStrategy;
 
-    public FileHandlerManager() {
-        initialize();
+    public FileHandlerManager() { initialize();
     }
 
     public BufferedImage openImage(String directory) {

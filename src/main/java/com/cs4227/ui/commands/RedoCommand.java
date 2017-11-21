@@ -30,8 +30,4 @@ public class RedoCommand implements Command {
             }
         }
     }
-
-    public void undo() {
-
-    }
 }

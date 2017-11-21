@@ -3,7 +3,6 @@ package com.cs4227.ui;
 import com.cs4227.ui.commands.*;
 import com.cs4227.ui.components.Component;
 import com.cs4227.ui.models.ExplorerSaveModel;
-import com.cs4227.ui.models.ExplorerSaveStrategyModel;
 import com.cs4227.ui.models.ImageModel;
 import com.cs4227.ui.models.ExplorerOpenModel;
 import com.cs4227.ui.views.*;
@@ -27,7 +26,6 @@ public class EditorController {
     private ImageModel imageModel;
     private ExplorerOpenModel explorerOpenModel;
     private ExplorerSaveModel explorerSaveModel;
-    private ExplorerSaveStrategyModel explorerSaveStrategyModel;
 
     public EditorController(ImageView imageView, OptionsView optionsView, AdjustmentsView adjustmentsView, TransformView transformView) {
 
@@ -45,7 +43,6 @@ public class EditorController {
         imageModel = new ImageModel(this.imageView.getImage());
         explorerOpenModel = new ExplorerOpenModel();
         explorerSaveModel = new ExplorerSaveModel();
-        explorerSaveStrategyModel = new ExplorerSaveStrategyModel();
 
 
         //Wire Views -> Commands -> Models
@@ -67,7 +64,6 @@ public class EditorController {
 
         this.optionsView.addCommandToComponent("OPEN", new OpenExplorerCommand(explorerOpenModel, explorerOpen));
         this.optionsView.addCommandToComponent("SAVE", new OpenExplorerCommand(explorerSaveModel, explorerSave));
-        this.optionsView.addCommandToComponent("SAVEST", new OpenExplorerCommand(explorerSaveStrategyModel, explorerSaveStrategy));
         this.optionsView.addCommandToComponent("UNDO", new UndoCommand(imageView));
         this.optionsView.addCommandToComponent("REDO", new RedoCommand(imageView));
     }
@@ -95,7 +91,6 @@ public class EditorController {
         this.explorerSave.addApproveCommand(new SaveImageCommand(explorerSave, imageModel, explorerSaveModel));
         this.explorerSave.addCancelCommand(new CloseExplorerCommand(explorerOpenModel, explorerSave));
 
-        this.explorerSaveStrategy.addApproveCommand(new SaveImageCommand(explorerSaveStrategy, imageModel, explorerSaveStrategyModel));
         this.explorerSaveStrategy.addCancelCommand(new CloseExplorerCommand(explorerOpenModel, explorerSaveStrategy));
     }
 

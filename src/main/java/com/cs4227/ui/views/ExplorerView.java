@@ -22,15 +22,6 @@ public class ExplorerView extends JFrame {
         if (type.equals("OPEN")) {
             fileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
         }
-        else if (type.equals("SAVEST")) {
-            fileChooser.setControlButtonsAreShown(true);
-            fileChooser.setDialogType(fileChooser.SAVE_DIALOG);
-
-            fileChooser.addChoosableFileFilter(new SaveAsJPG());
-            fileChooser.addChoosableFileFilter(new SaveAsPNG());
-
-            fileChooser.setAcceptAllFileFilterUsed(false);
-        }
         else if (type.equals("SAVE")){
             fileChooser.setDialogType(JFileChooser.SAVE_DIALOG);
         }
