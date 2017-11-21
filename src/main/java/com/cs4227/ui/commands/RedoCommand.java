@@ -22,7 +22,7 @@ public class RedoCommand implements Command {
             currentIndex++;
             MementoControl.setCurrentPathIndex(currentIndex);
 
-            BufferedImage imagePath = MementoControl.originator.restoreFromMemento(MementoControl.caretaker.getMemento(currentIndex));
+            BufferedImage imagePath = MementoControl.restoreFromMemento( MementoControl.getMementoFromCaretaker(currentIndex) );
             try {
                 imageView.setImage(imagePath);
             } catch (Exception e) {

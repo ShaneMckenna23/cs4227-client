@@ -23,7 +23,7 @@ public class UndoCommand implements Command {
             currentImage--;
             MementoControl.setCurrentPathIndex(currentImage);
 
-            BufferedImage imagePath = MementoControl.originator.restoreFromMemento( MementoControl.caretaker.getMemento(currentImage) );
+            BufferedImage imagePath = MementoControl.restoreFromMemento( MementoControl.getMementoFromCaretaker(currentImage) );
             try {
                 imageView.setImage(imagePath);
             } catch (Exception e) {

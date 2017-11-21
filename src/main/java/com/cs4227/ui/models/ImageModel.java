@@ -55,8 +55,8 @@ public class ImageModel {
 
     public void changeImage(BufferedImage image){
 
-        MementoControl.originator.set( image );
-        MementoControl.caretaker.addMemento( MementoControl.originator.storeInMemento() );
+        MementoControl.originatorSetImage( image );
+        MementoControl.addMemento( MementoControl.storeInMemento() );
         MementoControl.setImagePathCount( MementoControl.getImageCount() + 1 );
         MementoControl.setCurrentPathIndex( MementoControl.getCurrentPathIndex() + 1 );
 
