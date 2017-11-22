@@ -8,6 +8,7 @@ import com.cs4227.framework.filters.Filter;
 import com.cs4227.framework.filters.FilterFactory;
 import com.cs4227.framework.filehandler.FileHandlerManager;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Img4u {
@@ -55,6 +56,16 @@ public class Img4u {
         //FilterAPI filter = filterFactory.createFilter(filterType);
         String result = "\nNew Size:\nWidth =  " + w + "\nHeight = " + h;
         System.out.println(result);
-        return image;//no change to image yet
+
+        Image tmp = image.getScaledInstance(w, h, Image.SCALE_SMOOTH);
+        BufferedImage dimg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+
+        Graphics2D g2d = dimg.createGraphics();
+        g2d.drawImage(tmp, 0, 0, null);
+        g2d.dispose();
+
+        return dimg;
+
+        //return image;//no change to image yet
     }
 }
