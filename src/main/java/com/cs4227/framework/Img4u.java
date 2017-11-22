@@ -53,7 +53,6 @@ public class Img4u {
     }
 
     public BufferedImage applySizeChange(BufferedImage image, int w, int h) {
-        //FilterAPI filter = filterFactory.createFilter(filterType);
         String result = "\nNew Size:\nWidth =  " + w + "\nHeight = " + h;
         System.out.println(result);
 
