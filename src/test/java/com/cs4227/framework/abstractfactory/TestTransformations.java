@@ -1,5 +1,6 @@
-package com.cs4227.framework.filters;
+package com.cs4227.framework.abstractfactory;
 
+import com.cs4227.framework.filters.FilterFactory;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,15 +10,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import static org.junit.Assert.assertThat;
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertTrue;
 
-public class FilterFactoryTest {
-
+public class TestTransformations {
 
     private static BufferedImage testImage;
-    private FilterFactory filterFactory;
     private ImageIcon icon;
     private static final String TEST_IMAGE_DIRECTORY = System.getProperty("user.dir")
             + "/src/test/resources/filterTest.jpg";
@@ -28,7 +25,6 @@ public class FilterFactoryTest {
 
     @Before
     public void setup(){
-        filterFactory = new FilterFactory();
         icon = new ImageIcon();
         try {
             testImage = ImageIO.read(new File(TEST_IMAGE_DIRECTORY));
@@ -40,50 +36,51 @@ public class FilterFactoryTest {
     }
 
     @Test
-    public void createMonochromeFilter(){
-        Filter monochromeFilter = filterFactory.createFilter("Monochrome");
-        assertThat(monochromeFilter.filterAPI, instanceOf(Monochrome.class));
-        monochromeFilter.convert(testImage);
+    public void testClockwise45Rotation() {
+        AbstractRotateFactory factory = FactoryProducer.getFactory("Clockwise");
+        Rotate45 rotater = factory.createRotater45();
+        testImage = rotater.rotate(testImage);
         icon.setImage(testImage);
         int result = JOptionPane.showConfirmDialog(null,
-                "Was the Monochrome filter applied correctly?",
-                "Monochrome", JOptionPane.YES_NO_OPTION, 0, icon);
+                "Was the Clockwise 45 filter applied correctly?",
+                "Clockwise 45", JOptionPane.YES_NO_OPTION, 0, icon);
         assertTrue(result == 0);
     }
 
     @Test
-    public void createRedFilter(){
-        Filter redFilter = filterFactory.createFilter("Red");
-        assertThat(redFilter.filterAPI, instanceOf(RedFilter.class));
-        redFilter.convert(testImage);
+    public void testClockwise90Rotation() {
+        AbstractRotateFactory factory = FactoryProducer.getFactory("Clockwise");
+        Rotate90 rotater = factory.createRotater90();
+        testImage = rotater.rotate(testImage);
         icon.setImage(testImage);
         int result = JOptionPane.showConfirmDialog(null,
-                "Was the Red filter applied correctly?",
-                "Red", JOptionPane.YES_NO_OPTION, 0, icon);
+                "Was the Clockwise 90 filter applied correctly?",
+                "Clockwise 90", JOptionPane.YES_NO_OPTION, 0, icon);
         assertTrue(result == 0);
     }
 
     @Test
-    public void createBlueFilter(){
-        Filter blueFilter = filterFactory.createFilter("Blue");
-        assertThat(blueFilter.filterAPI, instanceOf(BlueFilter.class));
-        blueFilter.convert(testImage);
+    public void testAntiClockwise45Rotation() {
+        AbstractRotateFactory factory = FactoryProducer.getFactory("Anti-Clockwise");
+        Rotate45 rotater = factory.createRotater45();
+        testImage = rotater.rotate(testImage);
         icon.setImage(testImage);
         int result = JOptionPane.showConfirmDialog(null,
-                "Was the Blue filter applied correctly?",
-                "Blue", JOptionPane.YES_NO_OPTION, 0, icon);
+                "Was the Anti-Clockwise 45 filter applied correctly?",
+                "Anti=Clockwise 45", JOptionPane.YES_NO_OPTION, 0, icon);
         assertTrue(result == 0);
     }
 
     @Test
-    public void createGreenFilter(){
-        Filter greenFilter = filterFactory.createFilter("Green");
-        assertThat(greenFilter.filterAPI, instanceOf(GreenFilter.class));
-        greenFilter.convert(testImage);
+    public void testAntiClockwise90Rotation() {
+        AbstractRotateFactory factory = FactoryProducer.getFactory("Anti-Clockwise");
+        Rotate90 rotater = factory.createRotater90();
+        testImage = rotater.rotate(testImage);
         icon.setImage(testImage);
         int result = JOptionPane.showConfirmDialog(null,
-                "Was the Green filter applied correctly?",
-                "Green", JOptionPane.YES_NO_OPTION, 0, icon);
+                "Was the Anti-Clockwise 90 filter applied correctly?",
+                "Anti-Clockwise 90", JOptionPane.YES_NO_OPTION, 0, icon);
         assertTrue(result == 0);
     }
+
 }
